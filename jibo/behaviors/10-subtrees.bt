@@ -1,0 +1,84 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            2,
+            3,
+            4
+        ],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "Subtree",
+        "name": "Play a static subtree",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "behaviorPath": "10-subtrees/play-animation.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "3": {
+        "id": 3,
+        "class": "Subtree",
+        "name": "Play a subtree by passing in arguments",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "behaviorPath": "10-subtrees/choose-animation.bt",
+            "getNotepad": [
+                "() => {",
+                "    //randomly choose one of two animations",
+                "    let animations = ['excited', 'greeting'];",
+                "    let index = Math.round(Math.random() * (animations.length - 1));",
+                "    let animation = animations[index];",
+                "    console.log('Chose to play ' + animation + '.keys');",
+                "    //populate this subtree's notepad with a property called `animation`.",
+                "    //the subtree can use this to parametrize its behavior.",
+                "    return {",
+                "        animation: animation",
+                "    };",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "Subtree",
+        "name": "Play a subtree and get a return value",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "behaviorPath": "10-subtrees/return-animation.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {",
+                "    };",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "    console.log('This subtree played ' + treeResult.animation + '.keys');",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

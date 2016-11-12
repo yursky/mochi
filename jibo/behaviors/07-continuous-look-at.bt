@@ -1,0 +1,68 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "Jibo spins in a circle",
+        "children": [
+            6,
+            2
+        ],
+        "decorators": [],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "LookAt",
+        "name": "Continuous look at",
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [],
+        "options": {
+            "getTarget": [
+                "() => {",
+                "    let currentTime = Date.now();",
+                "    let delta = currentTime - notepad.lastTime;",
+                "    notepad.lastTime = currentTime;",
+                "    notepad.theta += notepad.direction * notepad.rate * delta / 1000;      ",
+                "    if(Math.abs(notepad.theta) > notepad.range) {",
+                "        notepad.direction *= -1;",
+                "    }",
+                "    //parametric equation for a circle",
+                "    let x = Math.cos(notepad.theta);",
+                "    let y = Math.sin(notepad.theta);",
+                "    return {x: x, y: y, z: 0.7};",
+                "}"
+            ],
+            "isContinuous": true,
+            "config": [
+                "(lookAt) => {",
+                "}"
+            ]
+        }
+    },
+    "6": {
+        "id": 6,
+        "class": "ExecuteScript",
+        "name": "Initialize variables",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "exec": [
+                "() => {",
+                "    //notepad is an object scoped within an entire behavior tree",
+                "    //file. Any function in a single .bt file can access it.",
+                "    notepad.theta = 0;",
+                "    //angular velocity in radians per second",
+                "    notepad.rate = 30 * Math.PI / 180;",
+                "    notepad.lastTime = Date.now();",
+                "    //look only in this range",
+                "    notepad.range = 180 * Math.PI / 180;",
+                "    notepad.direction = -1;",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

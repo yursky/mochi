@@ -1,0 +1,222 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            2,
+            18,
+            9,
+            19,
+            20,
+            39
+        ],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "Subtree",
+        "name": "Idle for 5 seconds",
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            3
+        ],
+        "options": {
+            "behaviorPath": "08-idle",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "3": {
+        "id": 3,
+        "class": "TimeoutSucceed",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "timeout": 5000
+        }
+    },
+    "5": {
+        "id": 5,
+        "class": "Subtree",
+        "name": "Idle until 'stop-idle' event is heard",
+        "asset-pack": "core",
+        "parent": 9,
+        "decorators": [
+            8
+        ],
+        "options": {
+            "behaviorPath": "08-idle",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "8": {
+        "id": 8,
+        "class": "SucceedOnEvent",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "eventName": "stop-idle",
+            "onEvent": [
+                "() => {",
+                "}"
+            ]
+        }
+    },
+    "9": {
+        "id": 9,
+        "class": "Parallel",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            5,
+            10
+        ],
+        "options": {
+            "succeedOnOne": false
+        }
+    },
+    "10": {
+        "id": 10,
+        "class": "ExecuteScriptAsync",
+        "name": "Dispatch 'stop-idle' event after 5 seconds",
+        "asset-pack": "core",
+        "parent": 9,
+        "options": {
+            "exec": [
+                "(succeed, fail) => {",
+                "    setTimeout(() => {",
+                "        //`emitter` is an EventEmitter that is scoped to a behavior tree instance.",
+                "        //The SucceedOnEvent decorator is listening for a 'stop-idle' event to be",
+                "        //emitted from the emitter.",
+                "        emitter.emit('stop-idle');",
+                "        //succeed this behavior",
+                "        succeed();",
+                "    }, 5000);",
+                "}"
+            ]
+        }
+    },
+    "18": {
+        "id": 18,
+        "class": "Subtree",
+        "name": "Center Robot",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "behaviorPath": "common/center-robot",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "19": {
+        "id": 19,
+        "class": "Subtree",
+        "name": "Center Robot",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "behaviorPath": "common/center-robot",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "20": {
+        "id": 20,
+        "class": "Subtree",
+        "name": "Idle for a random amount of time",
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            38
+        ],
+        "options": {
+            "behaviorPath": "08-idle",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "38": {
+        "id": 38,
+        "class": "SucceedOnCondition",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "init": [
+                "() => {",
+                "    //called once when the decorator starts.",
+                "    self.timeToWait = 2000 + Math.random() * 4000;",
+                "    self.startTime = Date.now();",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "    //this function is called every frame. The first time this function returns",
+                "    //true, the behavior is succeeded.",
+                "    //succeed if this behavior has been in progress for more than self.startTime",
+                "    return Date.now() - self.startTime > self.timeToWait;",
+                "}"
+            ]
+        }
+    },
+    "39": {
+        "id": 39,
+        "class": "Subtree",
+        "name": "Center Robot",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "behaviorPath": "common/center-robot",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

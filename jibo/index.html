@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sample Code</title>
+    <link rel="stylesheet" type="text/css" href="styles/main.css" />
+</head>
+<body>
+    <div id="face"></div>
+    <script>
+        if (!Array.from) Array.from = require('array-from');
+        require('behaviorify/register');
+        require('./src');
+    </script>
+</body>
+</html>

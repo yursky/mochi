@@ -1,0 +1,78 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            2,
+            4,
+            5
+        ],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "Subtree",
+        "name": "Idle",
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            7
+        ],
+        "options": {
+            "behaviorPath": "08-idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "CenterRobot",
+        "name": "",
+        "asset-pack": "project",
+        "parent": 1,
+        "options": {
+            "isGlobal": true
+        }
+    },
+    "5": {
+        "id": 5,
+        "class": "PlayAnimation",
+        "name": "Do an excited dance",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "animPath": "excited.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        }
+    },
+    "7": {
+        "id": 7,
+        "class": "SucceedOnEmbedded",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "rule": "hey_jibo",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('hey-jibo', (asrResult, speakerIds) => {",
+                "",
+                "    });",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

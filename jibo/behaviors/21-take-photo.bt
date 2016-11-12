@@ -1,0 +1,197 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "asset-pack": "core",
+        "children": [
+            "8db6f060-1d44-481b-8df6-17b90470b7ea",
+            "7fb7c0c7-f9ee-4b7b-bc67-e73fccea30a7",
+            "f615089e-9b01-4ee7-8c27-1e6ee68c462c",
+            "009578b6-abf7-448a-9181-e619c976e7d5",
+            "7653fd4d-38be-43be-87e8-ca9e72cc9035",
+            "c382e28c-8998-4c2c-86c1-7c0afc7e9fdb"
+        ],
+        "decorators": [],
+        "options": {}
+    },
+    "6": {
+        "id": 6,
+        "class": "TakePhoto",
+        "name": "take photo on shutter-click event",
+        "options": {
+            "resolution": 2,
+            "onPhoto": [
+                "(error, imageUrl) => {",
+                "  ",
+                "// put the photo's URL on the notepad",
+                "notepad.imageUrl = imageUrl;",
+                "",
+                "}"
+            ],
+            "noDistortion": true
+        },
+        "asset-pack": "core",
+        "parent": "f615089e-9b01-4ee7-8c27-1e6ee68c462c",
+        "decorators": [
+            "273514a2-af90-4962-8e12-d3a53388d345"
+        ]
+    },
+    "meta": {
+        "version": 1
+    },
+    "7653fd4d-38be-43be-87e8-ca9e72cc9035": {
+        "id": "7653fd4d-38be-43be-87e8-ca9e72cc9035",
+        "class": "TimeoutJs",
+        "name": "pause with photo on screen for 3 seconds",
+        "options": {
+            "getTime": [
+                "() => {",
+                "    return 3000;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "c382e28c-8998-4c2c-86c1-7c0afc7e9fdb": {
+        "id": "c382e28c-8998-4c2c-86c1-7c0afc7e9fdb",
+        "class": "ExecuteScript",
+        "name": "display the eye again",
+        "options": {
+            "exec": [
+                "() => {",
+                "  //remove the image from the screen",
+                "  jibo.face.stage.removeChild(notepad.photo); ",
+                "  ",
+                "  //force draw",
+                "  jibo.face.update(); ",
+                "  ",
+                "  //render only when dof values are dirty",
+                "  jibo.face.renderOnlyWhenDirty = true; ",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "f615089e-9b01-4ee7-8c27-1e6ee68c462c": {
+        "id": "f615089e-9b01-4ee7-8c27-1e6ee68c462c",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            "183e8b3c-372e-4a38-88be-caf4385eaec1",
+            6
+        ]
+    },
+    "183e8b3c-372e-4a38-88be-caf4385eaec1": {
+        "id": "183e8b3c-372e-4a38-88be-caf4385eaec1",
+        "class": "PlayAnimation",
+        "name": "play the camera animation",
+        "options": {
+            "animPath": "camera.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "f615089e-9b01-4ee7-8c27-1e6ee68c462c"
+    },
+    "273514a2-af90-4962-8e12-d3a53388d345": {
+        "id": "273514a2-af90-4962-8e12-d3a53388d345",
+        "class": "StartOnAnimEvent",
+        "name": "",
+        "options": {
+            "eventName": "shutter-click",
+            "onReceived": [
+                "(animFileName, payload) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "009578b6-abf7-448a-9181-e619c976e7d5": {
+        "id": "009578b6-abf7-448a-9181-e619c976e7d5",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  //redraw every frame",
+                "  jibo.face.renderOnlyWhenDirty = false; ",
+                "  ",
+                "  // create new Pixi sprite",
+                "  notepad.photo = new PIXI.Sprite();",
+                "  ",
+                "  // set the texture of the sprite to the imageURL",
+                "  notepad.photo.texture = PIXI.Texture.fromImage(notepad.imageUrl);",
+                "  ",
+                "  // add the sprite to the stage",
+                "  jibo.face.stage.addChild(notepad.photo);",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "7fb7c0c7-f9ee-4b7b-bc67-e73fccea30a7": {
+        "id": "7fb7c0c7-f9ee-4b7b-bc67-e73fccea30a7",
+        "class": "LookAt",
+        "name": "find a face",
+        "options": {
+            "getTarget": [
+                "() => {",
+                "  let jibo = require('jibo');",
+                "  let entity = jibo.lps.getClosestVisualEntity();",
+                "  ",
+                "  let position = {x:.5, y:.1, z:.4};",
+                "",
+                "  if (entity) {",
+                "          position = {x: entity.position.x, y: entity.position.y, z: entity.position.z};",
+                "  }",
+                "",
+                "  return position;",
+                "}"
+            ],
+            "isContinuous": true,
+            "config": [
+                "(lookAt) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            "3418a6b5-ede9-4708-b8f9-22697d47c0c6"
+        ]
+    },
+    "8db6f060-1d44-481b-8df6-17b90470b7ea": {
+        "id": "8db6f060-1d44-481b-8df6-17b90470b7ea",
+        "class": "TextToSpeech",
+        "name": "\"say cheese!\"",
+        "options": {
+            "words": "Say cheese!",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "3418a6b5-ede9-4708-b8f9-22697d47c0c6": {
+        "id": "3418a6b5-ede9-4708-b8f9-22697d47c0c6",
+        "class": "TimeoutSucceed",
+        "name": "",
+        "options": {
+            "timeout": 8000
+        },
+        "asset-pack": "core"
+    }
+}

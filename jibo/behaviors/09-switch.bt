@@ -1,0 +1,126 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            3,
+            2
+        ],
+        "decorators": [
+            8
+        ],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "Switch",
+        "name": "Switch on one of the two animations",
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            4,
+            5
+        ],
+        "options": {}
+    },
+    "3": {
+        "id": 3,
+        "class": "ExecuteScript",
+        "name": "Randomly choose an animation",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "exec": [
+                "() => {",
+                "    //randomly choose one of two animations",
+                "    let animations = ['excited', 'greeting'];",
+                "    let index = Math.round(Math.random() * (animations.length - 1));",
+                "    notepad.animation = animations[index];",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "PlayAnimation",
+        "name": "play greeting.keys",
+        "asset-pack": "core",
+        "parent": 2,
+        "decorators": [
+            6
+        ],
+        "options": {
+            "animPath": "greeting.keys",
+            "config": [
+                "(animation) => {",
+                "    console.log('playing greeting.keys');",
+                "}"
+            ]
+        }
+    },
+    "5": {
+        "id": 5,
+        "class": "PlayAnimation",
+        "name": "play excited.keys",
+        "asset-pack": "core",
+        "parent": 2,
+        "decorators": [
+            7
+        ],
+        "options": {
+            "animPath": "excited.keys",
+            "config": [
+                "(animation) => {",
+                "    console.log('playing excited.keys');",
+                "}"
+            ]
+        }
+    },
+    "6": {
+        "id": 6,
+        "class": "Case",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "conditional": [
+                "() => {",
+                "    return notepad.animation === 'greeting';",
+                "}"
+            ]
+        }
+    },
+    "7": {
+        "id": 7,
+        "class": "Case",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "conditional": [
+                "() => {",
+                "    return notepad.animation === 'excited';",
+                "}"
+            ]
+        }
+    },
+    "8": {
+        "id": 8,
+        "class": "WhileCondition",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "    return true;",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

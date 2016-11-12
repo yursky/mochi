@@ -1,0 +1,10 @@
+TopRule = $* (
+    $flight {book='air'} {city = flight._city}{state = flight._state} |
+    $hotel  {book='lodging'} {city = hotel._city}{state = hotel._state}
+) $*;
+
+flight = $reserve $* flight $* $location {_city = location._city}{_state = location._state};
+hotel = $reserve $* hotel $* $location {_city = location._city}{_state = location._state};
+
+location = $factory:city_state{_city = city_state._city}{_state = city_state._state};
+reserve = reserve | order | book;

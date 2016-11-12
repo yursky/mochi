@@ -1,0 +1,173 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            2,
+            7
+        ],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "Sequence",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            3,
+            20
+        ],
+        "options": {}
+    },
+    "3": {
+        "id": 3,
+        "class": "Subtree",
+        "name": "This will succeed",
+        "asset-pack": "core",
+        "parent": 2,
+        "decorators": [
+            4,
+            5
+        ],
+        "options": {
+            "behaviorPath": "08-idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "SucceedOnTouch",
+        "name": "",
+        "asset-pack": "project",
+        "options": {
+            "onTouch": [
+                "() => {",
+                "}"
+            ]
+        }
+    },
+    "5": {
+        "id": 5,
+        "class": "FailOnTouch",
+        "name": "",
+        "asset-pack": "project",
+        "options": {
+            "onTouch": [
+                "() => {",
+                "}"
+            ]
+        }
+    },
+    "7": {
+        "id": 7,
+        "class": "Switch",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            8,
+            21
+        ],
+        "options": {}
+    },
+    "8": {
+        "id": 8,
+        "class": "Subtree",
+        "name": "This will fail",
+        "asset-pack": "core",
+        "parent": 7,
+        "decorators": [
+            10,
+            9
+        ],
+        "options": {
+            "behaviorPath": "08-idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "9": {
+        "id": 9,
+        "class": "SucceedOnTouch",
+        "name": "",
+        "asset-pack": "project",
+        "parent": null,
+        "options": {
+            "onTouch": [
+                "() => {",
+                "}"
+            ]
+        }
+    },
+    "10": {
+        "id": 10,
+        "class": "FailOnTouch",
+        "name": "",
+        "asset-pack": "project",
+        "parent": null,
+        "options": {
+            "onTouch": [
+                "() => {",
+                "}"
+            ]
+        }
+    },
+    "20": {
+        "id": 20,
+        "class": "Subtree",
+        "name": "RobotCenter1",
+        "asset-pack": "core",
+        "parent": 2,
+        "options": {
+            "behaviorPath": "common/center-robot.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "21": {
+        "id": 21,
+        "class": "Subtree",
+        "name": "RobotCenter2",
+        "asset-pack": "core",
+        "parent": 7,
+        "options": {
+            "behaviorPath": "common/center-robot.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

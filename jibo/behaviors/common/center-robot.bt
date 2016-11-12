@@ -1,0 +1,45 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "args": [],
+        "children": [
+            2,
+            3
+        ]
+    },
+    "2": {
+        "id": 2,
+        "class": "ExecuteScriptAsync",
+        "name": "Globally Center Robot",
+        "asset-pack": "core",
+        "parent": 1,
+        "args": [
+            [
+                "(succeed, fail) => {",
+                "    let dofs = jibo.animate.dofs;",
+                "    jibo.animate.centerRobot(dofs.ALL, true, () => {",
+                "        succeed();    ",
+                "    });",
+                "}"
+            ]
+        ]
+    },
+    "3": {
+        "id": 3,
+        "class": "PlayAnimation",
+        "name": "Make a cute noise",
+        "asset-pack": "core",
+        "parent": 1,
+        "args": [
+            "zero.keys",
+            [
+                "(animation) => {",
+                "  let dofs = jibo.animate.dofs.ALL;",
+                "  animation.setDOFs(dofs.minus(dofs.LED));",
+                "}"
+            ]
+        ]
+    }
+}

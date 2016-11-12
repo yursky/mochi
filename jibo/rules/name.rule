@@ -1,0 +1,7 @@
+TopRule = my name is $person;
+
+  flight = reserve $* flight;
+  hotel = reserve $* hotel;
+  bat = reserve $* bat;
+
+  person @= (+$w) {name=_parsed};

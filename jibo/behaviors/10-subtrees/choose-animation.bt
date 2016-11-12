@@ -1,0 +1,77 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Switch",
+        "name": "",
+        "asset-pack": "core",
+        "args": [],
+        "children": [
+            2,
+            3
+        ]
+    },
+    "2": {
+        "id": 2,
+        "class": "PlayAnimation",
+        "name": "Play greeting.keys",
+        "asset-pack": "core",
+        "parent": 1,
+        "args": [
+            "greeting.keys",
+            [
+                "(animation) => {",
+                "}"
+            ]
+        ],
+        "decorators": [
+            5
+        ]
+    },
+    "3": {
+        "id": 3,
+        "class": "PlayAnimation",
+        "name": "Play excited.keys",
+        "asset-pack": "core",
+        "parent": 1,
+        "args": [
+            "excited.keys",
+            [
+                "(animation) => {",
+                "}"
+            ]
+        ],
+        "decorators": [
+            6
+        ]
+    },
+    "5": {
+        "id": 5,
+        "class": "Case",
+        "name": "",
+        "asset-pack": "core",
+        "args": [
+            [
+                "() => {",
+                "    //The notepad.animation property was populated by the parent tree.",
+                "    //This allows trees to be parameterized to change their behavior.",
+                "    return notepad.animation === 'greeting';",
+                "}"
+            ]
+        ]
+    },
+    "6": {
+        "id": 6,
+        "class": "Case",
+        "name": "",
+        "asset-pack": "core",
+        "args": [
+            [
+                "() => {",
+                "    //The notepad.animation property was populated by the parent tree.",
+                "    //This allows trees to be parameterized to change their behavior.",
+                "    return notepad.animation === 'excited';",
+                "}"
+            ]
+        ]
+    }
+}

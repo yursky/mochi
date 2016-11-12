@@ -1,0 +1,17 @@
+{
+    "FailOnTouch": {
+        "description": "Forces a behavior to fail when Jibo's face is touched.",
+        "type": "decorator",
+        "options": [
+            {
+                "type": "function",
+                "field": "onTouch",
+                "description": "Called when Jibo's face is touched",
+                "defaultValue": "() => {\n}"
+            }
+        ]
+    },
+    "meta": {
+        "version": 1
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            3
+        ],
+        "options": {}
+    },
+    "3": {
+        "id": 3,
+        "class": "LookAt",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "getTarget": [
+                "() => {",
+                "\tlet jibo = require('jibo');\t",
+                "\tlet entity = jibo.lps.getClosestVisualEntity();",
+                "",
+                "\tlet position = {x:.5, y:.1, z:.4};",
+                "",
+                "\tif (entity && entity.parts.length > 0) {",
+                "\t\tlet raysData = entity.parts[0].value.rays;",
+                "",
+                "\t\tif (raysData !== undefined && raysData.length > 0) {",
+                "",
+                "\t\t\tlet origin = entity.parts[0].value.rays[0].origin;",
+                "\t\t\tlet dir = entity.parts[0].value.rays[0].dir;",
+                "\t\t\t",
+                "\t\t\tposition\t= {x: dir.x + origin.x, y:dir.y + origin.y, z: dir.z + origin.z};",
+                "\t\t}",
+                "\t}",
+                "\telse {",
+                "\t\t\tposition = {x: 0.5, y: 0.1, z: 0.4}",
+                "\t}",
+                "\treturn position;",
+                "}"
+            ],
+            "isContinuous": true,
+            "config": [
+                "(lookAt) => {",
+                "",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

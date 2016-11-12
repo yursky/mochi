@@ -1,0 +1,373 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            "c69b275f-a687-421f-b836-6b98a49e8c53",
+            "646cf758-ee0e-4e35-9a44-dfc1d410023c",
+            "2f2ded07-ba9e-4f7f-a36e-53d3e7499e4b",
+            "f4a3cf35-32e6-455f-9b71-19788a71426e",
+            "e2572f41-046d-43ef-9ca4-409f2cfce2a1"
+        ],
+        "decorators": [],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "Subtree",
+        "name": "Watch target until \"Hey Jibo\"",
+        "asset-pack": "core",
+        "parent": "972e9295-a566-4f73-a392-68f04fc4ff7e",
+        "decorators": [
+            "1fff8b0b-b0fa-4e1e-b783-2af9d3016d2e"
+        ],
+        "options": {
+            "behaviorPath": "11-succeed-on.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "PlayAnimation",
+        "name": "Play excited animation",
+        "asset-pack": "core",
+        "parent": 137,
+        "options": {
+            "animPath": "excited.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        }
+    },
+    "6": {
+        "id": 6,
+        "class": "Parallel",
+        "name": "Hey there!",
+        "asset-pack": "core",
+        "parent": "972e9295-a566-4f73-a392-68f04fc4ff7e",
+        "children": [
+            136,
+            137,
+            8
+        ],
+        "options": {
+            "succeedOnOne": false
+        }
+    },
+    "7": {
+        "id": 7,
+        "class": "PlayAudio",
+        "name": "FX_SeeYou_01.mp3",
+        "asset-pack": "core",
+        "parent": 8,
+        "options": {
+            "audioPath": "FX_SeeYou_01.mp3"
+        }
+    },
+    "8": {
+        "id": 8,
+        "class": "Random",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 6,
+        "children": [
+            7,
+            9,
+            11,
+            15,
+            23,
+            39,
+            71
+        ],
+        "options": {}
+    },
+    "9": {
+        "id": 9,
+        "class": "PlayAudio",
+        "name": "FX_SeeYou_02.mp3",
+        "asset-pack": "core",
+        "parent": 8,
+        "options": {
+            "audioPath": "FX_SeeYou_02.mp3"
+        }
+    },
+    "11": {
+        "id": 11,
+        "class": "PlayAudio",
+        "name": "FX_SeeYou_03.mp3",
+        "asset-pack": "core",
+        "parent": 8,
+        "options": {
+            "audioPath": "FX_SeeYou_03.mp3"
+        }
+    },
+    "15": {
+        "id": 15,
+        "class": "PlayAudio",
+        "name": "FX_SeeYou_04.mp3",
+        "asset-pack": "core",
+        "parent": 8,
+        "options": {
+            "audioPath": "FX_SeeYou_04.mp3"
+        }
+    },
+    "23": {
+        "id": 23,
+        "class": "PlayAudio",
+        "name": "FX_SeeYou_05.mp3",
+        "asset-pack": "core",
+        "parent": 8,
+        "options": {
+            "audioPath": "FX_SeeYou_05.mp3"
+        }
+    },
+    "39": {
+        "id": 39,
+        "class": "PlayAudio",
+        "name": "FX_SeeYou_06.mp3",
+        "asset-pack": "core",
+        "parent": 8,
+        "options": {
+            "audioPath": "FX_SeeYou_06.mp3"
+        }
+    },
+    "71": {
+        "id": 71,
+        "class": "PlayAudio",
+        "name": "FX_SeeYou_07.mp3",
+        "asset-pack": "core",
+        "parent": 8,
+        "options": {
+            "audioPath": "FX_SeeYou_07.mp3"
+        }
+    },
+    "136": {
+        "id": 136,
+        "class": "TextToSpeechJs",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 6,
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    let responses = [",
+                "      \"Hey there. I see you.\",",
+                "      \"Whats up?\",",
+                "      \"Hi there.\" ",
+                "    ];",
+                "    let index = Math.round(Math.random() * (responses.length - 1));",
+                "    callback(responses[index]);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        }
+    },
+    "137": {
+        "id": 137,
+        "class": "Random",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 6,
+        "children": [
+            4,
+            138,
+            272
+        ],
+        "options": {}
+    },
+    "138": {
+        "id": 138,
+        "class": "PlayAnimation",
+        "name": "Play dance",
+        "asset-pack": "core",
+        "parent": 137,
+        "options": {
+            "animPath": "dance.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        }
+    },
+    "272": {
+        "id": 272,
+        "class": "PlayAnimation",
+        "name": "Play greetings",
+        "asset-pack": "core",
+        "parent": 137,
+        "options": {
+            "animPath": "greeting.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    },
+    "1fff8b0b-b0fa-4e1e-b783-2af9d3016d2e": {
+        "id": "1fff8b0b-b0fa-4e1e-b783-2af9d3016d2e",
+        "class": "SucceedOnEmbedded",
+        "name": "",
+        "options": {
+            "rule": "hey_jibo",
+            "onResult": [
+                "(listener) => {",
+                "\tlistener.on('hey-jibo', function(asrResult, speakerIds) {",
+                "",
+                "\t});",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "8dbd564d-1bde-45ac-9ea6-3647092f45be": {
+        "id": "8dbd564d-1bde-45ac-9ea6-3647092f45be",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "e2572f41-046d-43ef-9ca4-409f2cfce2a1",
+        "children": [
+            "972e9295-a566-4f73-a392-68f04fc4ff7e"
+        ]
+    },
+    "972e9295-a566-4f73-a392-68f04fc4ff7e": {
+        "id": "972e9295-a566-4f73-a392-68f04fc4ff7e",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "8dbd564d-1bde-45ac-9ea6-3647092f45be",
+        "children": [
+            2,
+            6
+        ]
+    },
+    "f4a3cf35-32e6-455f-9b71-19788a71426e": {
+        "id": "f4a3cf35-32e6-455f-9b71-19788a71426e",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {  ",
+                "  var xmlHttp = new XMLHttpRequest();",
+                "  xmlHttp.open( \"GET\", \"http://httpbin.org/ip\", false ); // false for synchronous request",
+                "  xmlHttp.send( null );",
+                "  console.log(xmlHttp.responseText);",
+                "  notepad.ip = xmlHttp.responseText;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "e2572f41-046d-43ef-9ca4-409f2cfce2a1": {
+        "id": "e2572f41-046d-43ef-9ca4-409f2cfce2a1",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            "8dbd564d-1bde-45ac-9ea6-3647092f45be"
+        ],
+        "decorators": [
+            "493864ed-0d48-4d94-a402-b1bbb94a8cda"
+        ]
+    },
+    "493864ed-0d48-4d94-a402-b1bbb94a8cda": {
+        "id": "493864ed-0d48-4d94-a402-b1bbb94a8cda",
+        "class": "WhileCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "    return true;",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "c69b275f-a687-421f-b836-6b98a49e8c53": {
+        "id": "c69b275f-a687-421f-b836-6b98a49e8c53",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "Hello, my name is Jibo! What is yours?",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "646cf758-ee0e-4e35-9a44-dfc1d410023c": {
+        "id": "646cf758-ee0e-4e35-9a44-dfc1d410023c",
+        "class": "Listen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "name.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      console.log(asrResult.NLParse['person.name']);",
+                "      notepad.user = asrResult.NLParse['person.name'];",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "2f2ded07-ba9e-4f7f-a36e-53d3e7499e4b": {
+        "id": "2f2ded07-ba9e-4f7f-a36e-53d3e7499e4b",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    callback('It is wonderful to meet you ' + notepad.user);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    }
+}

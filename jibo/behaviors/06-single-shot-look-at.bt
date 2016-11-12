@@ -1,0 +1,74 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "Loop forever",
+        "children": [
+            2,
+            5
+        ],
+        "decorators": [
+            4
+        ],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "LookAt",
+        "name": "Single shot look at",
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [],
+        "options": {
+            "getTarget": [
+                "() => {",
+                "    let x = 1;",
+                "    let y = 0.5 - Math.random();",
+                "    let z = 0.7 + 0.3 * (0.5 - Math.random());",
+                "    return {x: x, y: y, z: z};",
+                "}"
+            ],
+            "isContinuous": false,
+            "config": [
+                "(lookAt) => {",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "WhileCondition",
+        "name": "",
+        "asset-pack": "core",
+        "parent": null,
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "    return true;",
+                "}"
+            ]
+        }
+    },
+    "5": {
+        "id": 5,
+        "class": "TimeoutJs",
+        "name": "Block for a bit",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "getTime": [
+                "() => {",
+                "    //block for between 500ms and 1500ms",
+                "    return 500 + 1000 * Math.random();",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

@@ -1,0 +1,10 @@
+body {
+    margin:0;
+    overflow: hidden;
+    background-color:#000;
+}
+
+#face {
+    width: 1280px;
+    height: 720px;
+}

@@ -1,0 +1,68 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            2,
+            4
+        ],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "Subtree",
+        "name": "Idle until you tap Jibo's face",
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            3
+        ],
+        "options": {
+            "behaviorPath": "08-idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "3": {
+        "id": 3,
+        "class": "SucceedOnTouch",
+        "name": "",
+        "asset-pack": "project",
+        "options": {
+            "onTouch": [
+                "() => {",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "Subtree",
+        "name": "Center Robot",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "behaviorPath": "common/center-robot.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Parallel",
+        "name": "",
+        "asset-pack": "core",
+        "children": [
+            3,
+            4
+        ],
+        "options": {
+            "succeedOnOne": false
+        }
+    },
+    "3": {
+        "id": 3,
+        "class": "PlayAnimation",
+        "name": "Play greeting.keys",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "animPath": "greeting.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "PlayAudio",
+        "name": "Play FX_Bleep.mp3",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "audioPath": "FX_Bleep.mp3"
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "CenterRobot": {
+        "description": "Centers Jibo either locally or globally.",
+        "type": "leaf",
+        "options": [
+            {
+                "type": "boolean",
+                "field": "isGlobal",
+                "description": "True to center robot globally. False to center robot locally",
+                "defaultValue": true
+            }
+        ]
+    },
+    "meta": {
+        "version": 1
+    }
+}

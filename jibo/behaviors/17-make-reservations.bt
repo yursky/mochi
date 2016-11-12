@@ -1,0 +1,218 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            4,
+            10
+        ],
+        "decorators": [
+            17
+        ],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "Subtree",
+        "name": "Idle",
+        "asset-pack": "core",
+        "parent": 5,
+        "decorators": [
+            7
+        ],
+        "options": {
+            "behaviorPath": "08-idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "Parallel",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            5,
+            6
+        ],
+        "options": {
+            "succeedOnOne": false
+        }
+    },
+    "5": {
+        "id": 5,
+        "class": "Sequence",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 4,
+        "children": [
+            2,
+            27
+        ],
+        "options": {}
+    },
+    "6": {
+        "id": 6,
+        "class": "Listen",
+        "name": "Listen for speech",
+        "asset-pack": "core",
+        "parent": 4,
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: true,",
+                "        detectEnd: true,",
+                "        incremental: false",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "order.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('hey-jibo', (asrResult, speakerIds) => {",
+                "        emitter.emit('listen')",
+                "    });",
+                "    listener.on('cloud', (asrResult, speakerIds) => {",
+                "        console.log(asrResult);",
+                "        notepad.results = asrResult.NLParse",
+                "    });",
+                "}"
+            ]
+        }
+    },
+    "7": {
+        "id": 7,
+        "class": "SucceedOnEvent",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "eventName": "listen",
+            "onEvent": [
+                "() => {",
+                "}"
+            ]
+        }
+    },
+    "10": {
+        "id": 10,
+        "class": "Parallel",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 1,
+        "children": [
+            13,
+            11,
+            12
+        ],
+        "options": {
+            "succeedOnOne": false
+        }
+    },
+    "11": {
+        "id": 11,
+        "class": "PlayAnimation",
+        "name": "Play acknowledgement",
+        "asset-pack": "core",
+        "parent": 10,
+        "options": {
+            "animPath": "greeting.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        }
+    },
+    "12": {
+        "id": 12,
+        "class": "TextToSpeechJs",
+        "name": "",
+        "asset-pack": "core",
+        "parent": 10,
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    if(notepad.results.status === \"GOT-PARSE\") {",
+                "        let results = notepad.results;",
+                "        let text = 'Sure I\\'ll book ' + results.book + ' to ' + results.city;",
+                "        if(results.state !== \"null\") {",
+                "            text += ' ' + results.state;",
+                "        }",
+                "        callback(text);",
+                "    }",
+                "    else {",
+                "        callback('Sorry didn\\'t understand that.');",
+                "    }",
+                "    ",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        }
+    },
+    "13": {
+        "id": 13,
+        "class": "ExecuteScript",
+        "name": "Turn off LED",
+        "asset-pack": "core",
+        "parent": 10,
+        "options": {
+            "exec": [
+                "() => {",
+                "  console.log('SHUTTING OFF LED');",
+                "  jibo.animate.setLEDColor([0, 0, 0]);",
+                "}"
+            ]
+        }
+    },
+    "17": {
+        "id": 17,
+        "class": "WhileCondition",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "    return true;",
+                "}"
+            ]
+        }
+    },
+    "27": {
+        "id": 27,
+        "class": "ExecuteScriptAsync",
+        "name": "Globally Center Robot",
+        "asset-pack": "core",
+        "parent": 5,
+        "options": {
+            "exec": [
+                "(succeed, fail) => {",
+                "    let dofs = jibo.animate.dofs;",
+                "    jibo.animate.centerRobot(dofs.ALL, true, () => {",
+                "        jibo.animate.setLEDColor([0, 0, 1]);",
+                "        succeed();    ",
+                "    });",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

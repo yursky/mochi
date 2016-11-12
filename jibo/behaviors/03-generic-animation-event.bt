@@ -1,0 +1,59 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Parallel",
+        "name": "",
+        "asset-pack": "core",
+        "children": [
+            3,
+            4
+        ],
+        "options": {
+            "succeedOnOne": false
+        }
+    },
+    "3": {
+        "id": 3,
+        "class": "PlayAnimation",
+        "name": "Play greeting.keys",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "animPath": "greeting-with-event.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "PlayAudio",
+        "name": "Play bleep on animation event",
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            5
+        ],
+        "options": {
+            "audioPath": "FX_Bleep.mp3"
+        }
+    },
+    "5": {
+        "id": 5,
+        "class": "StartOnAnimEvent",
+        "name": "",
+        "asset-pack": "core",
+        "options": {
+            "eventName": "blink",
+            "onReceived": [
+                "(animFileName, payload) => {",
+                "    console.log('received blink event from keys file');",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

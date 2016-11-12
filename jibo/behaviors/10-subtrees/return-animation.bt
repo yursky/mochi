@@ -1,0 +1,107 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "args": [],
+        "children": [
+            3,
+            2
+        ],
+        "decorators": []
+    },
+    "2": {
+        "id": 2,
+        "class": "Switch",
+        "name": "Switch on one of the two animations",
+        "asset-pack": "core",
+        "parent": 1,
+        "args": [],
+        "children": [
+            4,
+            5
+        ]
+    },
+    "3": {
+        "id": 3,
+        "class": "ExecuteScript",
+        "name": "Randomly choose an animation",
+        "asset-pack": "core",
+        "parent": 1,
+        "args": [
+            [
+                "() => {",
+                "    //randomly choose one of two animations",
+                "    let animations = ['excited', 'greeting'];",
+                "    let index = Math.round(Math.random() * (animations.length - 1));",
+                "    notepad.animation = animations[index];",
+                "    //populate this tree's result object. This object gets passed back to",
+                "    //the parent tree when this tree either succeeds or fails.",
+                "    result.animation = notepad.animation;",
+                "}"
+            ]
+        ]
+    },
+    "4": {
+        "id": 4,
+        "class": "PlayAnimation",
+        "name": "play greeting.keys",
+        "asset-pack": "core",
+        "parent": 2,
+        "args": [
+            "greeting.keys",
+            [
+                "(animation) => {",
+                "  ",
+                "}"
+            ]
+        ],
+        "decorators": [
+            6
+        ]
+    },
+    "5": {
+        "id": 5,
+        "class": "PlayAnimation",
+        "name": "play excited.keys",
+        "asset-pack": "core",
+        "parent": 2,
+        "args": [
+            "excited.keys",
+            [
+                "(animation) => {",
+                "  ",
+                "}"
+            ]
+        ],
+        "decorators": [
+            7
+        ]
+    },
+    "6": {
+        "id": 6,
+        "class": "Case",
+        "name": "",
+        "asset-pack": "core",
+        "args": [
+            [
+                "() => {",
+                "    return notepad.animation === 'greeting';",
+                "}"
+            ]
+        ]
+    },
+    "7": {
+        "id": 7,
+        "class": "Case",
+        "name": "",
+        "asset-pack": "core",
+        "args": [
+            [
+                "() => {",
+                "    return notepad.animation === 'excited';",
+                "}"
+            ]
+        ]
+    }
+}

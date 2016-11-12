@@ -1,0 +1,53 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            2,
+            4
+        ],
+        "options": {}
+    },
+    "2": {
+        "id": 2,
+        "class": "ExecuteScriptAsync",
+        "name": "Dance and look at",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "exec": [
+                "(succeed, fail) => {",
+                "    //we can require any JavaScript file using a path relative",
+                "    //to this file.",
+                "    let lookAndDance = require('../src/look-and-dance');",
+                "    lookAndDance(() => {",
+                "        succeed();",
+                "    });",
+                "}"
+            ]
+        }
+    },
+    "4": {
+        "id": 4,
+        "class": "Subtree",
+        "name": "Center robot",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "behaviorPath": "common/center-robot.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}

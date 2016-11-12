@@ -1,0 +1,97 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            28,
+            5,
+            4,
+            29,
+            10,
+            16
+        ],
+        "options": {}
+    },
+    "4": {
+        "id": 4,
+        "class": "PlayAudio",
+        "name": "Bloop",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "audioPath": "FX_Bloop.mp3"
+        }
+    },
+    "5": {
+        "id": 5,
+        "class": "CenterRobot",
+        "name": "Center robot globally",
+        "asset-pack": "project",
+        "parent": 1,
+        "options": {
+            "isGlobal": true
+        }
+    },
+    "10": {
+        "id": 10,
+        "class": "CenterRobot",
+        "name": "Center robot locally",
+        "asset-pack": "project",
+        "parent": 1,
+        "options": {
+            "isGlobal": false
+        }
+    },
+    "16": {
+        "id": 16,
+        "class": "PlayAudio",
+        "name": "Bloop",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "audioPath": "FX_Bloop.mp3"
+        }
+    },
+    "28": {
+        "id": 28,
+        "class": "LookAt",
+        "name": "Look left and down",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "getTarget": [
+                "() => {",
+                "    return {x: 1, y: -1, z: 0.3};",
+                "}"
+            ],
+            "isContinuous": false,
+            "config": [
+                "(lookAt) => {",
+                "}"
+            ]
+        }
+    },
+    "29": {
+        "id": 29,
+        "class": "LookAt",
+        "name": "Look left",
+        "asset-pack": "core",
+        "parent": 1,
+        "options": {
+            "getTarget": [
+                "() => {",
+                "    return {x: 1, y: -1, z: 0.3};",
+                "}"
+            ],
+            "isContinuous": false,
+            "config": [
+                "(lookAt) => {",
+                "}"
+            ]
+        }
+    },
+    "meta": {
+        "version": 1
+    }
+}
