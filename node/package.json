@@ -1,0 +1,27 @@
+{
+  "name": "jibo-helper-api",
+  "version": "0.0.1",
+  "description": "API for the jibo-helper program",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuriyminin/prime-sw-2016.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuriyminin/prime-sw-2016/issues"
+  },
+  "homepage": "https://github.com/yuriyminin/prime-sw-2016#readme",
+  "dependencies": {
+    "async": "^2.1.2",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "request": "^2.78.0",
+    "twilio": "^2.11.0"
+  }
+}
