@@ -1,0 +1,19 @@
+h2, h3 {
+    display: inline;
+}
+
+#main {
+    padding-top: 50px;
+}
+
+#req-header {
+    margin-bottom: 25px;
+}
+
+.ul {
+    list-style-type: none;
+}
+
+.panel {
+    margin: 10px;
+}

@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var requestSchema = mongoose.Schema({
-    id: String,
     object: String,
     paitent: String,
     nurse: String,

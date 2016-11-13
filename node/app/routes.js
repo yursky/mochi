@@ -1,18 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var twilio = require('twilio');
+var path = require('path');
 
 var tw = require('./twilio.js');
 var Paitent = require('./models/paitent.js');
 var Request = require('./models/request.js');
 var Nurse = require('./models/nurse.js');
 
+var socket = require('./socket.js');
+
+var ObjectId = require('mongoose').Types.ObjectId; 
+
 router.get('/', function(req, res) {
-    res.json({response: "It's working"});
+    res.sendFile(path.join(__dirname, './index.html'));
 });
 
 router.post('/api/new', function(req, res) {
     var name = req.body.name;
+    tw.clearAll();
 
     Paitent.findOne({"name": name}, function(err, paitent) {
         if(err) {
@@ -85,23 +91,28 @@ router.post('/api/emergency', function(req, res) {
 
 router.post('/api/check', function(req, res) {
     var id = req.body.id;
+    console.log('checking ' + req.body.id);
 
-    Request.findOne({"_id": id}, function(err, request) {
+    Request.findOne({"_id": new ObjectId(id)}, function(err, request) {
+        console.log('Made db request...');
         if(err) {
             console.log(err);
-        } else {
+        } else if(request) {
+            console.log('Request status: ' + request.serviced);
             if(request.serviced) {
                 Nurse.findOne({"_id": request.nurse}, function(err, nurse) {
                     if(err) {
                         console.log(err);
                     } else {
-                        res.json({'msg': 'Request has been serviced', 'nurse': nurse.name});
+                        res.json({'msg': 'Request has been serviced', 'nurse': nurse.name, 'status': true});
                     }
                 });
 
             } else {
-                res.json({'msg': 'Request not serviced'});
+                res.json({'msg': 'Request not serviced', 'status': false});
             }
+        } else {
+            console.log('No request found');
         }
     })
 });
@@ -117,12 +128,12 @@ router.post('/api/message', (req, res) => {
         if(err) {
             console.log(err);
         } else if(nurse) {
-            console.log('User already registered, handling message');
+            //console.log('User already registered, handling message');
             tw.message(nurse, body, function(reply) {
                 twiml.message(reply);
                 res.writeHead(200, {'Content-Type': 'text/xml'});
                 res.end(twiml.toString());
-                console.log('Text sent: ' + reply);
+                console.log('Message sent: ' + reply);
             });
         } else {
             var newNurse = new Nurse();
@@ -136,6 +147,8 @@ router.post('/api/message', (req, res) => {
                     twiml.message('Thanks for signing up, ' + newNurse.name + '!');
                     res.writeHead(200, {'Content-Type': 'text/xml'});
                     res.end(twiml.toString());
+
+                    socket.updateNurseCt();
 
                     console.log('Saved new nurse with id: ' + newNurse._id);
                 }

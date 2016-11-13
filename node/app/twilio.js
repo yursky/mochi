@@ -4,6 +4,10 @@ var Paitent = require('./models/paitent.js');
 var Request = require('./models/request.js');
 var Nurse = require('./models/nurse.js');
 
+var socket = require('./socket.js');
+
+var ObjectId = require('mongoose').Types.ObjectId; 
+
 function clearReqs(requestID) {
     Nurse.find({"curReq": requestID}, function(err, nurses) {
         if(err) {
@@ -41,25 +45,45 @@ function sendText(number, message) {
     });
 }
  
+module.exports.clearAll = function() {
+    console.log('Clearing all current requests...');
+    Nurse.find(function(err, nurses) {
+        nurses.forEach(function(nurse) {
+            nurse.curReq = null;
+            nurse.save(function(err) { if(err) {console.log(err); } });
+        });
+    });
+}
 
 module.exports.request = function(request) {
 
-    Nurse.findRandom().limit(4).exec(function(err, nurses) {
+    socket.addReq(request);
+
+    Paitent.findOne({"_id": request.paitent}, function(err, paitent) {
         if(err) {
             console.log(err);
         } else {
-            nurses.forEach(function(nurse) {
-                nurse.curReq = request._id;
+            Nurse.findRandom().limit(4).exec(function(err, nurses) {
 
-                nurse.save(function(err) {
-                    if(err) { console.log(err); }
-                });
+                if(err) {
+                    console.log(err);
+                } else {
+                    nurses.forEach(function(nurse) {
+                        nurse.curReq = request._id;
 
-                var msgStr = 'A paitent needs ' + request.object + ", reply with 'ok' to accept";
-                sendText(nurse.number, msgStr);
+                        nurse.save(function(err) {
+                            if(err) { console.log(err); }
+                        });
+
+                        var msgStr = 'Paitent ' + paitent.name + ' needs ' + request.object + ", reply with 'ok' to accept";
+                        sendText(nurse.number, msgStr);
+                    });
+                }
             });
         }
     });
+
+    
 }
 
 module.exports.updatePaitent = function(paitentID, request) {
@@ -75,17 +99,33 @@ module.exports.updatePaitent = function(paitentID, request) {
 }
 
 module.exports.emergency = function(request) {
-    var msgStr = "Emergency help is needed, reply 'ok' to accept!";
 
-    Nurse.find({"curReq": null},function(err, nurses) {
-        nurses.forEach(function(nurse) {
-            nurse.curReq = request._id;
-            nurse.save(function(err) { if(err) {console.log(err); } });
+    socket.addReq(request);
 
-            sendText(nurse.number, msgStr);
-        });
+    console.log('HELP NEEDED, texting all open nurses');
 
-        console.log('HELP NEEDED, texting all open nurses');
+    Paitent.findOne({"_id": request.paitent}, function(err, paitent) {
+        if(err) {
+            console.log(err);
+        } else {
+            Nurse.find({"curReq": null}, function(err, nurses) {
+
+                if(err) {
+                    console.log(err);
+                } else {
+                    nurses.forEach(function(nurse) {
+                        nurse.curReq = request._id;
+
+                        nurse.save(function(err) {
+                            if(err) { console.log(err); }
+                        });
+
+                        var msgStr = 'Emergency help is needed! ' + paitent.name + " needs help, reply with 'ok' to accept";
+                        sendText(nurse.number, msgStr);
+                    });
+                }
+            });
+        }
     });
 }
 
@@ -94,7 +134,7 @@ module.exports.message = function(nurse, body, cb) {
 
     if(!nurse.curReq){
         cb('You have no current requests');
-    } else if(body === 'ok') {
+    } else if(body == 'ok' || body == 'Ok') {
         Request.findOne({"_id": nurse.curReq}, function(err, request) {
             if(err) {
                 console.log(err);
@@ -114,6 +154,8 @@ module.exports.message = function(nurse, body, cb) {
                     }
                     cb('Thanks ' + nurse.name + '!');
                     clearReqs(request._id);
+
+                    socket.updateReq(request);
                 });
             }
         });
