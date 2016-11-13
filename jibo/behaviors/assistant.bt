@@ -1150,7 +1150,7 @@
             "6836e20c-0343-43af-9c45-71583609721e"
         ],
         "children": [
-            "55be548b-a94d-41a2-abe3-e0be53671cb3",
+            "d4ed89a6-9ac2-4ca3-a3e7-ba388317d757",
             "559675be-e392-411b-ad21-5d7a889650c6",
             "61ce8d0d-e97a-4e35-a361-0be044ccbbb1",
             "146566a8-86ff-4125-9c79-a53773dc8182",
@@ -1193,7 +1193,13 @@
         "options": {
             "getWords": [
                 "(callback) => {",
-                "    callback('I have e-mailed your daughter to ask how she is. Here is a recent photo of your family.');",
+                "  console.log(\"checked sent\");",
+                "  if (notepad.sent == 'true') {",
+                "    callback('You have no new messages, I have e-mailed your daughter to ask how she is. Here is a recent photo of your family.');",
+                "  }",
+                "  else {",
+                "    callback('You have one new message from ' + notepad.sender + ', it says: \\n' + notepad.email + '\\n Here is a recent photo of your family.');",
+                "  }",
                 "} "
             ],
             "onWord": [
@@ -1202,7 +1208,7 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "1a57d16b-3ee1-4832-a2c8-093acc574c9c"
+        "parent": "d4ed89a6-9ac2-4ca3-a3e7-ba388317d757"
     },
     "05d02a08-6bea-4fd3-9457-2b2f0c84f306": {
         "id": "05d02a08-6bea-4fd3-9457-2b2f0c84f306",
@@ -1259,5 +1265,50 @@
         },
         "asset-pack": "core",
         "parent": "1a57d16b-3ee1-4832-a2c8-093acc574c9c"
+    },
+    "d4ed89a6-9ac2-4ca3-a3e7-ba388317d757": {
+        "id": "d4ed89a6-9ac2-4ca3-a3e7-ba388317d757",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "1a57d16b-3ee1-4832-a2c8-093acc574c9c",
+        "children": [
+            "0597209a-a98b-4880-9dc4-66a2ce69dd33",
+            "55be548b-a94d-41a2-abe3-e0be53671cb3"
+        ]
+    },
+    "0597209a-a98b-4880-9dc4-66a2ce69dd33": {
+        "id": "0597209a-a98b-4880-9dc4-66a2ce69dd33",
+        "class": "ExecuteScriptAsync",
+        "name": "",
+        "options": {
+            "exec": [
+                "(succeed, fail) => {",
+                "  notepad.sent = 'false';",
+                "  var request = require('request');",
+                "  request.get('http://jibo.pedelen.com/api/mail/check', function (error, response, body) {",
+                "    body = JSON.parse(body);",
+                "    if (body.sender == false) {",
+                "      request.post({url:'http://jibo.pedelen.com/api/mail/send', form: {id:notepad.user_id}}, function(err,httpResponse,body){ ",
+                "        console.log(\"set sent to true\");",
+                "        notepad.sent = 'true';",
+                "        succeed();",
+                "        console.log(\"message sent succesfully\");",
+                "      })",
+                "    }",
+                "    else {",
+                "      console.log(body.sender);",
+                "      console.log(body.message);",
+                "      notepad.sender = body.sender;",
+                "      notepad.email = body.message;",
+                "      succeed();",
+                "    }",
+                "})",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "d4ed89a6-9ac2-4ca3-a3e7-ba388317d757"
     }
 }
