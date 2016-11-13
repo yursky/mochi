@@ -1153,6 +1153,7 @@
             "55be548b-a94d-41a2-abe3-e0be53671cb3",
             "559675be-e392-411b-ad21-5d7a889650c6",
             "61ce8d0d-e97a-4e35-a361-0be044ccbbb1",
+            "146566a8-86ff-4125-9c79-a53773dc8182",
             "05d02a08-6bea-4fd3-9457-2b2f0c84f306"
         ]
     },
@@ -1239,6 +1240,20 @@
                 "    listener.on('cloud', function(asrResult, speakerIds) {",
                 "",
                 "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "1a57d16b-3ee1-4832-a2c8-093acc574c9c"
+    },
+    "146566a8-86ff-4125-9c79-a53773dc8182": {
+        "id": "146566a8-86ff-4125-9c79-a53773dc8182",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "famRemove.keys",
+            "config": [
+                "(animation) => {",
                 "}"
             ]
         },

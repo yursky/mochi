@@ -1,312 +1,35 @@
 {
     "version": "0.6.0",
     "framerate": 30,
-    "duration": 60,
+    "duration": 30,
     "scale": 1,
     "layers": [
         {
-            "id": "c5e86ae806cb4cf78b9178410e62f8d8",
+            "id": "16f394962fc244949794312805833d5b",
             "name": "Eye",
             "type": "Eye",
             "visible": true,
             "locked": false,
-            "keyframes": [
-                {
-                    "value": {
-                        "Rotate": 0,
-                        "Scale": {
-                            "x": 1,
-                            "y": 1
-                        },
-                        "Translate": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        },
-                        "Vertex 1": {
-                            "x": -300,
-                            "y": -300
-                        },
-                        "Vertex 2": {
-                            "x": 0,
-                            "y": -300
-                        },
-                        "Vertex 3": {
-                            "x": 300,
-                            "y": -300
-                        },
-                        "Vertex 4": {
-                            "x": -300,
-                            "y": 0
-                        },
-                        "Vertex 5": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "Vertex 6": {
-                            "x": 300,
-                            "y": 0
-                        },
-                        "Vertex 7": {
-                            "x": -300,
-                            "y": 300
-                        },
-                        "Vertex 8": {
-                            "x": 0,
-                            "y": 300
-                        },
-                        "Vertex 9": {
-                            "x": 300,
-                            "y": 300
-                        }
-                    },
-                    "time": 0
-                },
-                {
-                    "value": {
-                        "Rotate": 0,
-                        "Scale": {
-                            "x": 1,
-                            "y": 0.1658282654318074
-                        },
-                        "Translate": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        },
-                        "Vertex 1": {
-                            "x": -300,
-                            "y": -300
-                        },
-                        "Vertex 2": {
-                            "x": 0,
-                            "y": -300
-                        },
-                        "Vertex 3": {
-                            "x": 300,
-                            "y": -300
-                        },
-                        "Vertex 4": {
-                            "x": -300,
-                            "y": 0
-                        },
-                        "Vertex 5": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "Vertex 6": {
-                            "x": 300,
-                            "y": 0
-                        },
-                        "Vertex 7": {
-                            "x": -300,
-                            "y": 300
-                        },
-                        "Vertex 8": {
-                            "x": 0,
-                            "y": 300
-                        },
-                        "Vertex 9": {
-                            "x": 300,
-                            "y": 300
-                        }
-                    },
-                    "time": 10
-                },
-                {
-                    "value": {
-                        "Rotate": 0,
-                        "Scale": {
-                            "x": 1,
-                            "y": 1
-                        },
-                        "Translate": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        },
-                        "Vertex 1": {
-                            "x": -300,
-                            "y": -300
-                        },
-                        "Vertex 2": {
-                            "x": 0,
-                            "y": -300
-                        },
-                        "Vertex 3": {
-                            "x": 300,
-                            "y": -300
-                        },
-                        "Vertex 4": {
-                            "x": -300,
-                            "y": 0
-                        },
-                        "Vertex 5": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "Vertex 6": {
-                            "x": 300,
-                            "y": 0
-                        },
-                        "Vertex 7": {
-                            "x": -300,
-                            "y": 300
-                        },
-                        "Vertex 8": {
-                            "x": 0,
-                            "y": 300
-                        },
-                        "Vertex 9": {
-                            "x": 300,
-                            "y": 300
-                        }
-                    },
-                    "time": 20
-                }
-            ]
+            "keyframes": []
         },
         {
-            "id": "3d058154e286495a8c4a7e2ff9456d90",
+            "id": "97d955172f0b4c13ab403d4c04d1086d",
             "name": "Eye Texture",
             "type": "Eye Texture",
             "visible": true,
             "locked": false,
-            "keyframes": [
-                {
-                    "value": {
-                        "Texture": "animations/textures/white-eye.png",
-                        "Color": {
-                            "r": 255,
-                            "g": 255,
-                            "b": 255
-                        }
-                    },
-                    "time": 7
-                },
-                {
-                    "value": {
-                        "Texture": "animations/textures/white-eye.png",
-                        "Color": {
-                            "r": 5,
-                            "g": 242,
-                            "b": 52
-                        }
-                    },
-                    "time": 10
-                },
-                {
-                    "value": {
-                        "Texture": "animations/textures/white-eye.png",
-                        "Color": {
-                            "r": 255,
-                            "g": 255,
-                            "b": 255
-                        }
-                    },
-                    "time": 13
-                }
-            ]
+            "keyframes": []
         },
         {
-            "id": "c5bf43625db8463b927a5ba1497faf49",
+            "id": "e6c0a677bd9a4f29b595f2248c10c9ec",
             "name": "Body",
             "type": "Body",
             "visible": true,
             "locked": false,
-            "keyframes": [
-                {
-                    "value": {
-                        "Head": 0,
-                        "Torso": 0,
-                        "Pelvis": 0,
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        }
-                    },
-                    "time": 2
-                },
-                {
-                    "value": {
-                        "Head": -28.50000000000005,
-                        "Torso": 0,
-                        "Pelvis": 0,
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        }
-                    },
-                    "time": 10
-                },
-                {
-                    "value": {
-                        "Head": 0,
-                        "Torso": 0,
-                        "Pelvis": 0,
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        }
-                    },
-                    "time": 18
-                }
-            ]
+            "keyframes": []
         },
         {
-            "id": "c95b7c5f55144b418c54c81e50b166cb",
-            "name": "Audio Event",
-            "type": "Audio Event",
-            "visible": true,
-            "locked": false,
-            "keyframes": [
-                {
-                    "value": {
-                        "AudioEvent": {
-                            "file": "FX_Whoop.mp3"
-                        }
-                    },
-                    "time": 5
-                }
-            ]
-        },
-        {
-            "id": "176b64d5c5254338bc89b13787026e41",
-            "name": "Overlay Texture",
-            "type": "Overlay Texture",
-            "visible": true,
-            "locked": false,
-            "keyframes": [
-                {
-                    "value": {
-                        "Texture": "animations/textures/fam.png",
-                        "Color": {
-                            "r": 255,
-                            "g": 255,
-                            "b": 255
-                        }
-                    },
-                    "time": 10
-                }
-            ]
-        },
-        {
-            "id": "928ab211e81f42e195aa33bd716ea412",
+            "id": "8c990a9e11064644bbe8b55402506640",
             "name": "Overlay",
             "type": "Overlay",
             "visible": true,
@@ -365,7 +88,137 @@
                             "y": 300
                         }
                     },
-                    "time": 10
+                    "time": 0
+                },
+                {
+                    "value": {
+                        "Rotate": 0,
+                        "Scale": {
+                            "x": 0.027946149783668457,
+                            "y": 0.015391388892265245
+                        },
+                        "Translate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "Tween": {
+                            "display": "sine in out",
+                            "label": "Sine Ease In Out",
+                            "value": "sineInOut"
+                        },
+                        "Vertex 1": {
+                            "x": -300,
+                            "y": -300
+                        },
+                        "Vertex 2": {
+                            "x": 0,
+                            "y": -300
+                        },
+                        "Vertex 3": {
+                            "x": 300,
+                            "y": -300
+                        },
+                        "Vertex 4": {
+                            "x": -300,
+                            "y": 0
+                        },
+                        "Vertex 5": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "Vertex 6": {
+                            "x": 300,
+                            "y": 0
+                        },
+                        "Vertex 7": {
+                            "x": -300,
+                            "y": 300
+                        },
+                        "Vertex 8": {
+                            "x": 0,
+                            "y": 300
+                        },
+                        "Vertex 9": {
+                            "x": 300,
+                            "y": 300
+                        }
+                    },
+                    "time": 20
+                },
+                {
+                    "value": {
+                        "Rotate": 0,
+                        "Scale": {
+                            "x": 0.0033436478754525294,
+                            "y": 0.003859438264050065
+                        },
+                        "Translate": {
+                            "x": 641.5127566975284,
+                            "y": 353.01612214187594
+                        },
+                        "Tween": {
+                            "display": "sine in out",
+                            "label": "Sine Ease In Out",
+                            "value": "sineInOut"
+                        },
+                        "Vertex 1": {
+                            "x": -300,
+                            "y": -300
+                        },
+                        "Vertex 2": {
+                            "x": 0,
+                            "y": -300
+                        },
+                        "Vertex 3": {
+                            "x": 300,
+                            "y": -300
+                        },
+                        "Vertex 4": {
+                            "x": -300,
+                            "y": 0
+                        },
+                        "Vertex 5": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "Vertex 6": {
+                            "x": 300,
+                            "y": 0
+                        },
+                        "Vertex 7": {
+                            "x": -300,
+                            "y": 300
+                        },
+                        "Vertex 8": {
+                            "x": 0,
+                            "y": 300
+                        },
+                        "Vertex 9": {
+                            "x": 300,
+                            "y": 300
+                        }
+                    },
+                    "time": 25
+                }
+            ]
+        },
+        {
+            "id": "3a4dcebc16e24a00959d5fdbe16632ce",
+            "name": "Overlay Texture",
+            "type": "Overlay Texture",
+            "visible": true,
+            "locked": false,
+            "keyframes": [
+                {
+                    "value": {
+                        "Texture": "animations/textures/fam.png",
+                        "Color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255
+                        }
+                    },
+                    "time": 0
                 }
             ]
         }
