@@ -370,7 +370,7 @@
             "getOptions": [
                 "() => {",
                 "    let options = {",
-                "        heyJibo: true,",
+                "        heyJibo: false,",
                 "        detectEnd: false,",
                 "        incremental: false,",
                 "        authenticateSpeaker: ''",
