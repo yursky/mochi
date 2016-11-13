@@ -88,21 +88,17 @@
     },
     "0dc62bc9-1a5d-4521-97ea-56d20b22dda7": {
         "id": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
-        "class": "Parallel",
+        "class": "Sequence",
         "name": "",
-        "options": {
-            "succeedOnOne": false
-        },
+        "options": {},
         "asset-pack": "core",
         "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
+        "children": [
+            "547e1bf6-9fe1-421c-a862-58e3f87c2ca5",
+            "e83a99d6-efcc-4505-aecf-200f7f72f5e5"
+        ],
         "decorators": [
             "dba8ced5-cc30-451a-abf1-05087bb31481"
-        ],
-        "children": [
-            "f5e8889b-5c18-4e51-b215-7e6719660d31",
-            "f31e8f77-c8c7-41c8-af1c-92458565f12f",
-            "e73937ff-1607-46c0-afe7-f203b2c479f5",
-            "48c1c8f6-a611-4072-8812-f228d40eba6c"
         ]
     },
     "dba8ced5-cc30-451a-abf1-05087bb31481": {
@@ -127,12 +123,21 @@
         "options": {
             "exec": [
                 "() => {",
+                "  var request = require('request');",
                 "  console.log(notepad.user_name + \" has alerted that they need help.\");",
+                "  ",
+                "  request.post({url:'http://jibo.pedelen.com/api/emergency', form: {id:notepad.user_id}}, function(err,httpResponse,body){ ",
+                "    console.log('Message text: ' + JSON.parse(body).message);",
+                "    console.log('With request id: ' + JSON.parse(body).requestID);",
+                "    notepad.message = JSON.parse(body).message;",
+                "    notepad.requestID = JSON.parse(body).requestID;",
+                "   })",
                 "}"
             ]
         },
         "asset-pack": "core",
-        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7"
+        "parent": "547e1bf6-9fe1-421c-a862-58e3f87c2ca5",
+        "decorators": []
     },
     "f31e8f77-c8c7-41c8-af1c-92458565f12f": {
         "id": "f31e8f77-c8c7-41c8-af1c-92458565f12f",
@@ -146,7 +151,7 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
+        "parent": "547e1bf6-9fe1-421c-a862-58e3f87c2ca5",
         "decorators": []
     },
     "73c87da0-209c-4741-8352-fcd428e9f5b6": {
@@ -177,7 +182,8 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "48c1c8f6-a611-4072-8812-f228d40eba6c"
+        "parent": "fe1078c9-42e6-4f61-903e-441844ae9be5",
+        "decorators": []
     },
     "e73937ff-1607-46c0-afe7-f203b2c479f5": {
         "id": "e73937ff-1607-46c0-afe7-f203b2c479f5",
@@ -191,19 +197,7 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7"
-    },
-    "48c1c8f6-a611-4072-8812-f228d40eba6c": {
-        "id": "48c1c8f6-a611-4072-8812-f228d40eba6c",
-        "class": "Sequence",
-        "name": "",
-        "options": {},
-        "asset-pack": "core",
-        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
-        "children": [
-            "73c87da0-209c-4741-8352-fcd428e9f5b6",
-            "e59d7520-bf94-4714-b1bf-430110766e9e"
-        ]
+        "parent": "547e1bf6-9fe1-421c-a862-58e3f87c2ca5"
     },
     "e59d7520-bf94-4714-b1bf-430110766e9e": {
         "id": "e59d7520-bf94-4714-b1bf-430110766e9e",
@@ -217,7 +211,7 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "48c1c8f6-a611-4072-8812-f228d40eba6c"
+        "parent": "e83a99d6-efcc-4505-aecf-200f7f72f5e5"
     },
     "08108a88-6b70-4cfc-abe7-630a1dbd2735": {
         "id": "08108a88-6b70-4cfc-abe7-630a1dbd2735",
@@ -370,11 +364,12 @@
             "getOptions": [
                 "() => {",
                 "    let options = {",
-                "        heyJibo: false,",
+                "        heyJibo: true,",
                 "        detectEnd: false,",
                 "        incremental: false,",
                 "        authenticateSpeaker: ''",
                 "    }",
+                "    jibo.animate.setLEDColor([0.0, 0.0, 1.0]);",
                 "    return options;",
                 "}"
             ],
@@ -388,6 +383,7 @@
                 "        notepad.item = asrResult.NLParse['fetch.item.name'];",
                 "      }",
                 "      console.log(notepad.state);",
+                "      jibo.animate.setLEDColor([0.0, 0.0, 0.0]);",
                 "    });",
                 "}"
             ]
@@ -499,6 +495,7 @@
                 "        incremental: false,",
                 "        authenticateSpeaker: ''",
                 "    }",
+                "    jibo.animate.setLEDColor([0.0, 0.0, 1.0]);",
                 "    return options;",
                 "}"
             ],
@@ -509,6 +506,7 @@
                 "      console.log('New user added: ' + asrResult.NLParse['person.name']);",
                 "      notepad.user_name = asrResult.NLParse['person.name'];",
                 "      notepad.got_name = 'true';",
+                "      jibo.animate.setLEDColor([0.0, 0.0, 0.0]);",
                 "    });",
                 "}"
             ]
@@ -528,5 +526,81 @@
         },
         "asset-pack": "core",
         "parent": "ee8fae1f-a167-41b3-b06c-5cd97a3ce4b0"
+    },
+    "fceb143e-0b29-4720-9ade-3efd81af875f": {
+        "id": "fceb143e-0b29-4720-9ade-3efd81af875f",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  ",
+                "  var request = require('request');",
+                "  console.log('Polling for response on request...');",
+                "  ",
+                "  var handled = false;",
+                "  poll();",
+                "  ",
+                "  function poll() {",
+                "    setTimeout(function() {",
+                "      console.log(\"Checking the request\");",
+                "      request.post({url:'http://jibo.pedelen.com/api/check', form: {id:notepad.requestID}}, function(err,httpResponse,body){ ",
+                "        if (notepad.message = JSON.parse(body).status === 'true') {",
+                "          handled = true;",
+                "          nodepad.state = null;",
+                "        } else {",
+                "          poll();",
+                "        }",
+                "      });",
+                "    }, 1000);",
+                "  }",
+                "  ",
+                "  console.log(\"im out\");",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "fe1078c9-42e6-4f61-903e-441844ae9be5"
+    },
+    "fe1078c9-42e6-4f61-903e-441844ae9be5": {
+        "id": "fe1078c9-42e6-4f61-903e-441844ae9be5",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": true
+        },
+        "asset-pack": "core",
+        "parent": "e83a99d6-efcc-4505-aecf-200f7f72f5e5",
+        "children": [
+            "73c87da0-209c-4741-8352-fcd428e9f5b6",
+            "fceb143e-0b29-4720-9ade-3efd81af875f"
+        ]
+    },
+    "e83a99d6-efcc-4505-aecf-200f7f72f5e5": {
+        "id": "e83a99d6-efcc-4505-aecf-200f7f72f5e5",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
+        "children": [
+            "fe1078c9-42e6-4f61-903e-441844ae9be5",
+            "e59d7520-bf94-4714-b1bf-430110766e9e"
+        ]
+    },
+    "547e1bf6-9fe1-421c-a862-58e3f87c2ca5": {
+        "id": "547e1bf6-9fe1-421c-a862-58e3f87c2ca5",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
+        "children": [
+            "e73937ff-1607-46c0-afe7-f203b2c479f5",
+            "f31e8f77-c8c7-41c8-af1c-92458565f12f",
+            "f5e8889b-5c18-4e51-b215-7e6719660d31"
+        ]
     }
 }
