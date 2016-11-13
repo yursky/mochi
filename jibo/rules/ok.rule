@@ -1,0 +1,5 @@
+TopRule = $* (
+      $ok {what='hello'}
+  ) $*;
+
+  ok = (ok | alright | fine);

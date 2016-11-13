@@ -1,0 +1,135 @@
+{
+  "3": {
+    "id": 3,
+    "class": "Parallel",
+    "name": "",
+    "asset-pack": "core",
+    "children": [
+      19,
+      16
+    ],
+    "decorators": [],
+    "options": {
+      "succeedOnOne": false
+    }
+  },
+  "16": {
+    "id": 16,
+    "class": "Sequence",
+    "name": "",
+    "asset-pack": "core",
+    "parent": 3,
+    "children": [
+      18,
+      17
+    ],
+    "decorators": [
+      23
+    ],
+    "options": {}
+  },
+  "17": {
+    "id": 17,
+    "class": "LookAt",
+    "name": "Choose place to look",
+    "asset-pack": "core",
+    "parent": 16,
+    "options": {
+      "getTarget": [
+        "() => {",
+        "\tlet x = 1;",
+        "\tlet y = (1 - 2 * Math.random());",
+        "\tlet z = 0.7 + 0.5 * (1 - 2 * Math.random());",
+        "\treturn {x: x, y: y, z: z};",
+        "}"
+      ]
+    }
+  },
+  "18": {
+    "id": 18,
+    "class": "TimeoutJs",
+    "asset-pack": "core",
+    "parent": 16,
+    "name": "Pause for a bit",
+    "options": {
+      "getTime": [
+        "() => {",
+        "   return 1000 + 2000 * Math.random();",
+        "}"
+      ]
+    }
+  },
+  "19": {
+    "id": 19,
+    "class": "Sequence",
+    "name": "",
+    "asset-pack": "core",
+    "parent": 3,
+    "children": [
+      21,
+      20
+    ],
+    "decorators": [
+      22
+    ],
+    "options": {}
+  },
+  "20": {
+    "id": 20,
+    "class": "Blink",
+    "asset-pack": "core",
+    "parent": 19,
+    "options": {}
+  },
+  "21": {
+    "id": 21,
+    "class": "TimeoutJs",
+    "name": "Pause for a bit",
+    "asset-pack": "core",
+    "parent": 19,
+    "options": {
+      "getTime": [
+        "() => {",
+        "   return 2000 + 2500 * Math.random();",
+        "}"
+      ]
+    }
+  },
+  "22": {
+    "id": 22,
+    "class": "WhileCondition",
+    "name": "",
+    "asset-pack": "core",
+    "options": {
+      "init": [
+        "() => {",
+        "}"
+      ],
+      "conditional": [
+        "() => {",
+        "  return true;",
+        "}"
+      ]
+    }
+  },
+  "23": {
+    "id": 23,
+    "class": "WhileCondition",
+    "name": "",
+    "asset-pack": "core",
+    "options": {
+      "init": [
+        "() => {",
+        "}"
+      ],
+      "conditional": [
+        "() => {",
+        "  return true;",
+        "}"
+      ]
+    }
+  },
+  "meta": {
+    "version": 1
+  }
+}

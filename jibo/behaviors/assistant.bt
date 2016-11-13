@@ -1,0 +1,532 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "children": [
+            "08108a88-6b70-4cfc-abe7-630a1dbd2735"
+        ],
+        "decorators": []
+    },
+    "meta": {
+        "version": 1
+    },
+    "2ec7e859-a378-4e8c-8af3-5054b86ce26c": {
+        "id": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
+        "class": "Switch",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "6890f228-80e6-4da3-b4af-da43932a4138",
+        "decorators": [],
+        "children": [
+            "0bae6328-0d35-45a0-91e3-d2669042b60b",
+            "0dc62bc9-1a5d-4521-97ea-56d20b22dda7"
+        ]
+    },
+    "0bae6328-0d35-45a0-91e3-d2669042b60b": {
+        "id": "0bae6328-0d35-45a0-91e3-d2669042b60b",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
+        "decorators": [
+            "20bdee4a-4f96-4605-baae-5447571ddb44"
+        ],
+        "children": [
+            "055553a9-3778-44a5-8a5e-6542bc1fcecc",
+            "438575b4-4976-4828-9c07-d4e3a048b459"
+        ]
+    },
+    "20bdee4a-4f96-4605-baae-5447571ddb44": {
+        "id": "20bdee4a-4f96-4605-baae-5447571ddb44",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  if(notepad.state == 'fetch'){",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "055553a9-3778-44a5-8a5e-6542bc1fcecc": {
+        "id": "055553a9-3778-44a5-8a5e-6542bc1fcecc",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  console.log(notepad.user_name + \" needs \" + notepad.item);",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "0bae6328-0d35-45a0-91e3-d2669042b60b"
+    },
+    "438575b4-4976-4828-9c07-d4e3a048b459": {
+        "id": "438575b4-4976-4828-9c07-d4e3a048b459",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "fetch.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "0bae6328-0d35-45a0-91e3-d2669042b60b"
+    },
+    "0dc62bc9-1a5d-4521-97ea-56d20b22dda7": {
+        "id": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
+        "decorators": [
+            "dba8ced5-cc30-451a-abf1-05087bb31481"
+        ],
+        "children": [
+            "f5e8889b-5c18-4e51-b215-7e6719660d31",
+            "f31e8f77-c8c7-41c8-af1c-92458565f12f",
+            "e73937ff-1607-46c0-afe7-f203b2c479f5",
+            "48c1c8f6-a611-4072-8812-f228d40eba6c"
+        ]
+    },
+    "dba8ced5-cc30-451a-abf1-05087bb31481": {
+        "id": "dba8ced5-cc30-451a-abf1-05087bb31481",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  if(notepad.state == 'emergency'){",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "f5e8889b-5c18-4e51-b215-7e6719660d31": {
+        "id": "f5e8889b-5c18-4e51-b215-7e6719660d31",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  console.log(notepad.user_name + \" has alerted that they need help.\");",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7"
+    },
+    "f31e8f77-c8c7-41c8-af1c-92458565f12f": {
+        "id": "f31e8f77-c8c7-41c8-af1c-92458565f12f",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "emergency.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
+        "decorators": []
+    },
+    "73c87da0-209c-4741-8352-fcd428e9f5b6": {
+        "id": "73c87da0-209c-4741-8352-fcd428e9f5b6",
+        "class": "Listen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: true,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "ok.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "        notepad.ok = true; ",
+                "        notepad.state = null;",
+                "        console.log(\"ok\");",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "48c1c8f6-a611-4072-8812-f228d40eba6c"
+    },
+    "e73937ff-1607-46c0-afe7-f203b2c479f5": {
+        "id": "e73937ff-1607-46c0-afe7-f203b2c479f5",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "Don't worry. Everyone has been notified and will be on their way.",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7"
+    },
+    "48c1c8f6-a611-4072-8812-f228d40eba6c": {
+        "id": "48c1c8f6-a611-4072-8812-f228d40eba6c",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
+        "children": [
+            "73c87da0-209c-4741-8352-fcd428e9f5b6",
+            "e59d7520-bf94-4714-b1bf-430110766e9e"
+        ]
+    },
+    "e59d7520-bf94-4714-b1bf-430110766e9e": {
+        "id": "e59d7520-bf94-4714-b1bf-430110766e9e",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "neutral.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "48c1c8f6-a611-4072-8812-f228d40eba6c"
+    },
+    "08108a88-6b70-4cfc-abe7-630a1dbd2735": {
+        "id": "08108a88-6b70-4cfc-abe7-630a1dbd2735",
+        "class": "Sequence",
+        "name": "",
+        "children": [
+            "7a4ef54c-a11c-4657-ab4a-cdfbddc31597",
+            "e8966af3-4c15-4c3c-961b-c802994c71f3",
+            "ee8fae1f-a167-41b3-b06c-5cd97a3ce4b0",
+            "35ca7198-0071-4d3b-8730-8c5d83bf7bb7",
+            "391776e5-1421-4a70-81ff-09992e4bea28"
+        ],
+        "decorators": [],
+        "options": {},
+        "parent": 1
+    },
+    "325bb681-f517-46df-8b98-187b7d1f43ea": {
+        "id": "325bb681-f517-46df-8b98-187b7d1f43ea",
+        "class": "Subtree",
+        "name": "Watch target until \"Hey Jibo\"",
+        "asset-pack": "core",
+        "parent": "6890f228-80e6-4da3-b4af-da43932a4138",
+        "decorators": [
+            "cc05c0be-5273-4999-9193-cd0e1e942cb5"
+        ],
+        "options": {
+            "behaviorPath": "11-succeed-on.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        }
+    },
+    "c5cb2def-d2ef-4823-8d0a-a87675f8dd48": {
+        "id": "c5cb2def-d2ef-4823-8d0a-a87675f8dd48",
+        "class": "WhileCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "    return true;",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "391776e5-1421-4a70-81ff-09992e4bea28": {
+        "id": "391776e5-1421-4a70-81ff-09992e4bea28",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "08108a88-6b70-4cfc-abe7-630a1dbd2735",
+        "children": [
+            "1bf067dc-7413-402f-b49d-63f11e1c6a04"
+        ],
+        "decorators": [
+            "c5cb2def-d2ef-4823-8d0a-a87675f8dd48"
+        ]
+    },
+    "1bf067dc-7413-402f-b49d-63f11e1c6a04": {
+        "id": "1bf067dc-7413-402f-b49d-63f11e1c6a04",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "391776e5-1421-4a70-81ff-09992e4bea28",
+        "children": [
+            "6890f228-80e6-4da3-b4af-da43932a4138"
+        ]
+    },
+    "6890f228-80e6-4da3-b4af-da43932a4138": {
+        "id": "6890f228-80e6-4da3-b4af-da43932a4138",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "1bf067dc-7413-402f-b49d-63f11e1c6a04",
+        "children": [
+            "325bb681-f517-46df-8b98-187b7d1f43ea",
+            "2ec7e859-a378-4e8c-8af3-5054b86ce26c"
+        ]
+    },
+    "c83d31cb-7099-47d0-892a-7d377b427bbb": {
+        "id": "c83d31cb-7099-47d0-892a-7d377b427bbb",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {  ",
+                "  var request = require('request');",
+                "  request.post({url:'http://jibo.pedelen.com/api/new', form: {name:notepad.user_name}}, function(err,httpResponse,body){ ",
+                "    notepad.user_id = JSON.parse(body).id;",
+                "    console.log('With user ID: ' + JSON.parse(body).id);",
+                "   })",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "ee8fae1f-a167-41b3-b06c-5cd97a3ce4b0"
+    },
+    "aafe9ec9-aad3-4759-aaf0-6ea49217b1ea": {
+        "id": "aafe9ec9-aad3-4759-aaf0-6ea49217b1ea",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    callback('It is wonderful to meet you ' + notepad.user_name + ', give me a second to register you.');",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "ee8fae1f-a167-41b3-b06c-5cd97a3ce4b0"
+    },
+    "38ab7aab-1cd1-4d8e-bda1-10b364ff52d5": {
+        "id": "38ab7aab-1cd1-4d8e-bda1-10b364ff52d5",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "Hello, my name is Jibo! What is yours?",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "7a4ef54c-a11c-4657-ab4a-cdfbddc31597"
+    },
+    "cc05c0be-5273-4999-9193-cd0e1e942cb5": {
+        "id": "cc05c0be-5273-4999-9193-cd0e1e942cb5",
+        "class": "SucceedOnListen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: true,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "parsed-string.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      notepad.state =  asrResult.NLParse.what;",
+                "      console.log(asrResult.NLParse.fetch);",
+                "      if(notepad.state == 'fetch'){",
+                "        notepad.item = asrResult.NLParse['fetch.item.name'];",
+                "      }",
+                "      console.log(notepad.state);",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "35ca7198-0071-4d3b-8730-8c5d83bf7bb7": {
+        "id": "35ca7198-0071-4d3b-8730-8c5d83bf7bb7",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "Ok, I'm ready now. Let me know if you need anything.",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "08108a88-6b70-4cfc-abe7-630a1dbd2735"
+    },
+    "ee8fae1f-a167-41b3-b06c-5cd97a3ce4b0": {
+        "id": "ee8fae1f-a167-41b3-b06c-5cd97a3ce4b0",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "08108a88-6b70-4cfc-abe7-630a1dbd2735",
+        "children": [
+            "c83d31cb-7099-47d0-892a-7d377b427bbb",
+            "9401da67-e447-4d7e-bcf8-fca1113aefb7",
+            "aafe9ec9-aad3-4759-aaf0-6ea49217b1ea"
+        ]
+    },
+    "7a4ef54c-a11c-4657-ab4a-cdfbddc31597": {
+        "id": "7a4ef54c-a11c-4657-ab4a-cdfbddc31597",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "08108a88-6b70-4cfc-abe7-630a1dbd2735",
+        "children": [
+            "38ab7aab-1cd1-4d8e-bda1-10b364ff52d5",
+            "9892e214-b0ef-42d1-8f86-41799f86f71b"
+        ]
+    },
+    "e8966af3-4c15-4c3c-961b-c802994c71f3": {
+        "id": "e8966af3-4c15-4c3c-961b-c802994c71f3",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "08108a88-6b70-4cfc-abe7-630a1dbd2735",
+        "children": [
+            "772bae94-0510-44f2-a551-2af6e8d22f4b"
+        ]
+    },
+    "9892e214-b0ef-42d1-8f86-41799f86f71b": {
+        "id": "9892e214-b0ef-42d1-8f86-41799f86f71b",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "greeting-with-audio-event.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "7a4ef54c-a11c-4657-ab4a-cdfbddc31597"
+    },
+    "772bae94-0510-44f2-a551-2af6e8d22f4b": {
+        "id": "772bae94-0510-44f2-a551-2af6e8d22f4b",
+        "class": "Subtree",
+        "name": "",
+        "options": {
+            "behaviorPath": "19-lps.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "e8966af3-4c15-4c3c-961b-c802994c71f3",
+        "decorators": [
+            "1f42d5be-5f05-4f4d-90aa-e9b4a4f818e8"
+        ]
+    },
+    "1f42d5be-5f05-4f4d-90aa-e9b4a4f818e8": {
+        "id": "1f42d5be-5f05-4f4d-90aa-e9b4a4f818e8",
+        "class": "SucceedOnListen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "name.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      console.log('New user added: ' + asrResult.NLParse['person.name']);",
+                "      notepad.user_name = asrResult.NLParse['person.name'];",
+                "      notepad.got_name = 'true';",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "9401da67-e447-4d7e-bcf8-fca1113aefb7": {
+        "id": "9401da67-e447-4d7e-bcf8-fca1113aefb7",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "excited.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "ee8fae1f-a167-41b3-b06c-5cd97a3ce4b0"
+    }
+}

@@ -1,0 +1,5 @@
+TopRule = $* (
+      $greeting {what='hello'}
+  ) $*;
+
+  greeting = (hello | hi | (whats up) | hey);

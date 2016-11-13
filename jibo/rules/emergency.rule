@@ -1,0 +1,5 @@
+TopRule = $* (
+      $emergency {what='emergency'}
+  ) $*;
+
+  emergency = (help | need| ah| (oh no));

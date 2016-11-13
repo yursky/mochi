@@ -1,0 +1,55 @@
+{
+    "version": "0.6.0",
+    "framerate": 30,
+    "duration": 15,
+    "scale": 1,
+    "layers": [
+        {
+            "id": "4830ba0e4a924091a0b642f3fd5cb820",
+            "name": "Eye",
+            "type": "Eye",
+            "visible": true,
+            "locked": false,
+            "keyframes": []
+        },
+        {
+            "id": "c2f87b7cece44703986a60d039ffec31",
+            "name": "Eye Texture",
+            "type": "Eye Texture",
+            "visible": true,
+            "locked": false,
+            "keyframes": [
+                {
+                    "value": {
+                        "Texture": "animations/textures/white-eye.png",
+                        "Color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255
+                        }
+                    },
+                    "time": 0
+                },
+                {
+                    "value": {
+                        "Texture": "animations/textures/white-eye.png",
+                        "Color": {
+                            "r": 38,
+                            "g": 255,
+                            "b": 255
+                        }
+                    },
+                    "time": 14
+                }
+            ]
+        },
+        {
+            "id": "680b37577c4442e58439496b4100f438",
+            "name": "Body",
+            "type": "Body",
+            "visible": true,
+            "locked": false,
+            "keyframes": []
+        }
+    ]
+}

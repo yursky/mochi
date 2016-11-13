@@ -1,0 +1,9 @@
+  TopRule =  $* (
+      $help {what='emergency'} |
+      $fetch  {what = 'fetch'}
+  );
+
+  help = i need $* help;
+  fetch = i need $item;
+
+  item @= (+$w) {name=_parsed};

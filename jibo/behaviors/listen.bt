@@ -1,0 +1,123 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "children": [
+            "f797608c-c5a4-4e8a-9333-c997b1f3f47d",
+            "5ac564db-4b30-4bdf-85fe-d2ee3e956e5e",
+            "421acdcc-de88-4255-9394-c9a0907eecae",
+            "d69e8cc9-6120-4b33-95cf-2aaf60358607"
+        ]
+    },
+    "meta": {
+        "version": 1
+    },
+    "f797608c-c5a4-4e8a-9333-c997b1f3f47d": {
+        "id": "f797608c-c5a4-4e8a-9333-c997b1f3f47d",
+        "class": "Listen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "greeting.rule",
+            "onResult": [
+                "(listener) => {",
+                " listener.on('cloud', function(asrResult, speakerIds) {",
+                " if (asrResult.NLParse.what == 'hello') {",
+                " notepad.whatNext = asrResult.NLParse.what;",
+                " }",
+                " else {",
+                " notepad.whatNext = 'nothing';",
+                " }",
+                " });",
+                " }"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "5ac564db-4b30-4bdf-85fe-d2ee3e956e5e": {
+        "id": "5ac564db-4b30-4bdf-85fe-d2ee3e956e5e",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "greeting.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            "f9265f88-fd61-471f-a130-7fac00cce352"
+        ]
+    },
+    "f9265f88-fd61-471f-a130-7fac00cce352": {
+        "id": "f9265f88-fd61-471f-a130-7fac00cce352",
+        "class": "StartOnCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "  if (notepad.whatNext == 'hello') {",
+                "    return true;",
+                "  }",
+                "  return false;",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "421acdcc-de88-4255-9394-c9a0907eecae": {
+        "id": "421acdcc-de88-4255-9394-c9a0907eecae",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {  ",
+                "  var xmlHttp = new XMLHttpRequest();",
+                "    xmlHttp.open( \"GET\", \"http://httpbin.org/ip\", false ); // false for synchronous request",
+                "    xmlHttp.send( null );",
+                "    console.log(xmlHttp.responseText);",
+                "    notepad.ip = xmlHttp.responseText;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "d69e8cc9-6120-4b33-95cf-2aaf60358607": {
+        "id": "d69e8cc9-6120-4b33-95cf-2aaf60358607",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    callback(notepad.ip);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    }
+}

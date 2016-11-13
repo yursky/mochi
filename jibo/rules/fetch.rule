@@ -1,0 +1,5 @@
+TopRule = $* (
+      $fetch {what='fetch'}
+  ) $*;
+
+  fetch = (want | get | please);

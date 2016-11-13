@@ -14,7 +14,7 @@ jibo.init('face', function(err) {
     require('./behaviors/fail-on-touch');
 
     // Load and create the behavior tree
-    let root = jibo.bt.create('../behaviors/20-lps-asr');
+    let root = jibo.bt.create('../behaviors/assistant');
     root.start();
 
     // Listen for frame update for change in status
