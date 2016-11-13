@@ -2,4 +2,4 @@ TopRule = $* (
       $ok {what='hello'}
   ) $*;
 
-  ok = (ok | alright | fine);
+  ok = (ok | alright | fine| thanks);

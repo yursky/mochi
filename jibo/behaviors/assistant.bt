@@ -22,6 +22,7 @@
         "parent": "6890f228-80e6-4da3-b4af-da43932a4138",
         "decorators": [],
         "children": [
+            "1a57d16b-3ee1-4832-a2c8-093acc574c9c",
             "f6c78b5e-a669-479a-8810-220249ea3247",
             "cc38757d-8087-4121-9248-6fd620385fec",
             "0bae6328-0d35-45a0-91e3-d2669042b60b",
@@ -31,7 +32,7 @@
     "0bae6328-0d35-45a0-91e3-d2669042b60b": {
         "id": "0bae6328-0d35-45a0-91e3-d2669042b60b",
         "class": "Sequence",
-        "name": "",
+        "name": "fetch",
         "options": {},
         "asset-pack": "core",
         "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
@@ -95,7 +96,7 @@
     "0dc62bc9-1a5d-4521-97ea-56d20b22dda7": {
         "id": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
         "class": "Sequence",
-        "name": "",
+        "name": "emergency",
         "options": {},
         "asset-pack": "core",
         "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
@@ -640,7 +641,7 @@
     "cc38757d-8087-4121-9248-6fd620385fec": {
         "id": "cc38757d-8087-4121-9248-6fd620385fec",
         "class": "Sequence",
-        "name": "",
+        "name": "sad",
         "options": {},
         "asset-pack": "core",
         "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
@@ -763,7 +764,7 @@
                 "  let stories = [",
                 "    'There once was two bunny rabbits hoping through the forest. One was very sad, but the other was very happy because he had just found himself the biggest carrot in the forest. The sad rabbit hopped up next to the happy rabbit and stared. The happy rabbit extended out the carrot to him and the two became forever friends.', ",
                 "    'Once there was a dr. pepper flavored jelly bean that no one liked. His smell, his brown color, and his fizzy scent were absolutely repulsing. But one day he met his true love, a cherry flavored bean. She was the most beautiful red color and smelled very fruity. A human decided to eat them together and discovered the best flavor of all cherry Dr. Pepper.',",
-                "    'What do you call the robot that always takes the longest route around? R2 detour!'",
+                "    'What do you call the robot that always takes the longest route around? R2 deetour!'",
                 "  ];",
                 "  let index = Math.round(Math.random() * (stories.length - 1));",
                 "  callback(stories[index]);",
@@ -896,7 +897,7 @@
     "f6c78b5e-a669-479a-8810-220249ea3247": {
         "id": "f6c78b5e-a669-479a-8810-220249ea3247",
         "class": "Sequence",
-        "name": "",
+        "name": "greeting",
         "options": {},
         "asset-pack": "core",
         "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
@@ -1137,5 +1138,111 @@
         },
         "asset-pack": "core",
         "parent": "6890f228-80e6-4da3-b4af-da43932a4138"
+    },
+    "1a57d16b-3ee1-4832-a2c8-093acc574c9c": {
+        "id": "1a57d16b-3ee1-4832-a2c8-093acc574c9c",
+        "class": "Sequence",
+        "name": "family",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
+        "decorators": [
+            "6836e20c-0343-43af-9c45-71583609721e"
+        ],
+        "children": [
+            "55be548b-a94d-41a2-abe3-e0be53671cb3",
+            "559675be-e392-411b-ad21-5d7a889650c6",
+            "61ce8d0d-e97a-4e35-a361-0be044ccbbb1",
+            "05d02a08-6bea-4fd3-9457-2b2f0c84f306"
+        ]
+    },
+    "6836e20c-0343-43af-9c45-71583609721e": {
+        "id": "6836e20c-0343-43af-9c45-71583609721e",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  if(notepad.state == 'family'){",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "559675be-e392-411b-ad21-5d7a889650c6": {
+        "id": "559675be-e392-411b-ad21-5d7a889650c6",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "family.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "1a57d16b-3ee1-4832-a2c8-093acc574c9c"
+    },
+    "55be548b-a94d-41a2-abe3-e0be53671cb3": {
+        "id": "55be548b-a94d-41a2-abe3-e0be53671cb3",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    callback('I have e-mailed your daughter to ask how she is. Here is a recent photo of your family.');",
+                "} "
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "1a57d16b-3ee1-4832-a2c8-093acc574c9c"
+    },
+    "05d02a08-6bea-4fd3-9457-2b2f0c84f306": {
+        "id": "05d02a08-6bea-4fd3-9457-2b2f0c84f306",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "neutral.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "1a57d16b-3ee1-4832-a2c8-093acc574c9c"
+    },
+    "61ce8d0d-e97a-4e35-a361-0be044ccbbb1": {
+        "id": "61ce8d0d-e97a-4e35-a361-0be044ccbbb1",
+        "class": "Listen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "ok.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "1a57d16b-3ee1-4832-a2c8-093acc574c9c"
     }
 }

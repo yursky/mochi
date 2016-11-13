@@ -2,13 +2,15 @@
       $help {what='emergency'} |
       $fetch  {what = 'fetch'} |
       $sad {what= 'sad'} |
-      $greeting {what='name'}
+      $greeting {what='name'} |
+      $family {what = 'family'}
   );
 
   help = ($* i need help) | ($* i have an emergency);
   fetch = ($* i need ) | ($* get (me) | (some)) $item;
   sad = (sad | upset | down | blue);
   greeting = ($* my name is) | ($* i am) $name;
+  family = (family);
 
   item @= (+$w) {name=_parsed};
   name @= (+$w) {name=_parsed};
