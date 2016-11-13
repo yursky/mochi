@@ -286,6 +286,7 @@
         "asset-pack": "core",
         "parent": "1bf067dc-7413-402f-b49d-63f11e1c6a04",
         "children": [
+            "9a140bc8-49bf-4ec1-8c66-61c5f9ee2dcc",
             "a782704a-49b9-4913-84c8-bb7159737c53",
             "398a3599-d771-4e8d-9030-7f02125ae8ed",
             "2ec7e859-a378-4e8c-8af3-5054b86ce26c"
@@ -1122,5 +1123,19 @@
             ]
         },
         "asset-pack": "core"
+    },
+    "9a140bc8-49bf-4ec1-8c66-61c5f9ee2dcc": {
+        "id": "9a140bc8-49bf-4ec1-8c66-61c5f9ee2dcc",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "neutral.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "6890f228-80e6-4da3-b4af-da43932a4138"
     }
 }
