@@ -12,6 +12,9 @@ var socket = require('./socket.js');
 
 var ObjectId = require('mongoose').Types.ObjectId; 
 
+var mailSender = null;
+var mailMessage = null;
+
 router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './index.html'));
 });
@@ -156,6 +159,69 @@ router.post('/api/message', (req, res) => {
         }
     });
 
+});
+
+router.post('/api/mail', function(req, res) {
+    console.log('Mail get!');
+    //console.log(req.body[0].msys.relay_message);
+    console.log('Message from ' + req.body[0].msys.relay_message.msg_from + ', text:');
+    //console.log(req.body[0].msys.relay_message.content.text);
+    res.sendStatus(200);
+
+    mailSender = req.body[0].msys.relay_message.msg_from;
+    mailMessage = req.body[0].msys.relay_message.content.text;
+
+    while(mailMessage.includes('\n')) {
+        mailMessage = mailMessage.replace('\n', '');
+    }
+    
+    while(mailMessage.includes('\r')) {
+        mailMessage = mailMessage.replace('\r', '');
+    }
+
+    console.log(mailMessage);
+
+});
+
+router.get('/api/mail/check', function(req, res) {
+    console.log('Mail checked...');
+    
+    if(mailMessage) {
+        res.json({sender: mailSender, message: mailMessage});
+    } else {
+        res.json({sender: '', message: ''});
+    }
+
+    mailSender = null;
+    mailMessage = null;
+})
+
+
+
+var SparkPost = require('sparkpost');
+var client = new SparkPost(sparkpost);
+
+
+router.post('/api/mail/send', function(req, res) {
+client.transmissions.send({
+    content: {
+      from: 'messages@pedelen.com',
+      subject: 'A message from your family member',
+      text:'Your family member is thinking about you. Maybe reply?'
+    },
+    recipients: [
+      {address: 'patrickedelen@gmail.com'}
+    ]
+  })
+  .then(data => {
+    console.log('Message sent:');
+    console.log(data);
+    res.json({message: 'Message sent'});
+  })
+  .catch(err => {
+    console.log('Something went wrong');
+    console.log(err);
+  });
 });
 
 module.exports = router;

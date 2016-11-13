@@ -6,7 +6,7 @@ function addReqPrepend(req) {
      + req.titleBar + '</h3></div><div class="panel-body">' + req.info
      + '</div></div></div>';
 
-    $('#requests').prepend(reqText);
+    $('#requests').html(reqText);
 }
 
 function addReqAppend(req) {
@@ -15,7 +15,7 @@ function addReqAppend(req) {
      + req.titleBar + '</h3></div><div class="panel-body">' + req.info
      + '</div></div></div>';
 
-    $('#requests').append(reqText);
+    $('#requests').html(reqText);
 }
 
 function updateReq(req) {
@@ -24,9 +24,7 @@ function updateReq(req) {
     + req.titleBar + '</h3></div><div class="panel-body">' + req.info
     + '</div></div></div>';
 
-     var id = '#' + req.id;
-
-     $(id).replaceWith(reqText);
+     $('#requests').html(reqText);
 }
 
 function updateNurses(nurseCt) {
@@ -39,19 +37,21 @@ socket.on('join', function(requests, nurseCt) {
 
     updateNurses(nurseCt);
     requests.forEach(function(element) {
-        addReqAppend(element);
+        addReqPrepend(element);
     });
 
 });
 
 socket.on('add req', function(request) {
     console.log('Request to add an req recieved');
+    console.log(request);
 
     addReqPrepend(request);
 });
 
 socket.on('update req', function(request) {
     console.log('Request to update a req recieved');
+    console.log(request);
 
     updateReq(request);
 });

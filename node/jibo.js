@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var path = require('path');
 
+
 mongoose.connect('mongodb://root:root@ds151697.mlab.com:51697/carebot_db', function(err) {
   if(err){
     console.log(err);
@@ -24,7 +25,7 @@ app.use('/', routes);
 
 var http = require('http').Server(app);
 
-var socket = require('./app/socket.js')(http);
+var socket = require('./app/socket.js').setup(http);
 
 http.listen(3005, function(err) {
     if(!err) {

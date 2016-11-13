@@ -28,26 +28,48 @@ function findReqs() {
                 var info;
                 var color;
 
-                if(requests[i].object == 'Emergency') {
-                    info = 'Emergency reported by ' + requests[i].paitent;
-                    if(requests[i].serviced) {
-                        titleBar = 'Emergency - Serviced';
-                        color = 'success';
+
+                Paitent.findOne({"_id": requests[i].paitent}, function(err, paitent) {
+                    if(err) { console.log(err); }
+
+                    if(requests[i].object == 'Emergency') {
+                        info = 'Emergency reported for ' + paitent.name;
+                        if(requests[i].serviced) {
+                            Nurse.findOne({"_id": requests[i].nurse}, function(err, nurse) {
+                                if(err) { console.log(err); }
+                                titleBar = 'Emergency - Serviced by ' + nurse.name;
+                                color = 'success';
+                                requestArr.push({id: requests[i]._id, titleBar: titleBar, info: info, color: color});
+                            });
+                            
+                        } else {
+                            titleBar = 'Emergency';
+                            color = 'danger';
+                            requestArr.push({id: requests[i]._id, titleBar: titleBar, info: info, color: color});
+                        }
                     } else {
-                        titleBar = 'Emergency';
-                        color = 'danger';
+                        info = 'Request of ' + requests[i].object + ' for ' + paitent.name;
+                        if(requests[i].serviced) {
+                            Nurse.findOne({"_id": requests[i].nurse}, function(err, nurse) {
+                                if(err) { console.log(err); }
+                                if(nurse) {
+                                    var ns = nurse.name;
+                                } else {
+                                    ns = requests[i].nurse;
+                                }
+                                titleBar = 'Request - Serviced by ' + ns;
+                                color = 'success';
+                                requestArr.push({id: requests[i]._id, titleBar: titleBar, info: info, color: color});
+                            });
+                        } else {
+                            titleBar = 'Request';
+                            color = 'primary';
+                            requestArr.push({id: requests[i]._id, titleBar: titleBar, info: info, color: color});
+                        }
                     }
-                } else {
-                    info = 'Request of ' + requests[i].object;
-                    if(requests[i].serviced) {
-                        titleBar = 'Request - Serviced';
-                        color = 'success';
-                    } else {
-                        titleBar = 'Request';
-                        color = 'primary';
-                    }
-                }
-                requestArr.push({id: requests[i]._id, titleBar: titleBar, info: info, color: color});
+                    
+
+                });
             }
 
         });
@@ -55,7 +77,7 @@ function findReqs() {
 
 
 
-module.exports = function(http) {
+module.exports.setup = function(http) {
 
     findReqs();
     findNurseCt();
@@ -72,10 +94,12 @@ module.exports = function(http) {
         });
 
         msgsEmitter.on('reqUpdate', (req) => {
+            console.log('Update request ' + req.titleBar);
             io.emit('update req', req);
         });
 
         msgsEmitter.on('reqAdd', (req) => {
+            console.log('Add request ' + req.titleBar);
             io.emit('add req', req);
         });
 
@@ -91,68 +115,186 @@ module.exports.updateNurseCt = function() {
     }
 
 module.exports.addReq = function(request) {
+    console.log('Entered addReq fn');
         findReqs();
         
-        if(request.object == 'Emergency') {
-            info = 'Emergency reported by ' + request.paitent;
-            if(request.serviced) {
-                titleBar = 'Emergency - Serviced';
-                color = 'success';
-            } else {
-                titleBar = 'Emergency';
-                color = 'danger';
-            }
-        } else {
-            info = 'Request of ' + request.object;
-            if(request.serviced) {
-                titleBar = 'Request - Serviced';
-                color = 'success';
-            } else {
-                titleBar = 'Request';
-                color = 'primary';
-            }
-        }
+        Request.findOne(function(err, request) {
+            console.log('Found one');
+            if(err) { console.log(err); }
 
-        var req = {
-            id: request._id,
-            titleBar: titleBar,
-            info: info,
-            color: color
-        };
+            var titleBar;
+            var info;
+            var color;
 
-        msgsEmitter.emit('reqAdd', req);
+
+            Paitent.findOne({"_id": request.paitent}, function(err, paitent) {
+                if(err) { console.log(err); }
+
+                if(request.object == 'Emergency') {
+                    info = 'Emergency reported for ' + paitent.name;
+                    if(request.serviced) {
+                        Nurse.findOne({"_id": request.nurse}, function(err, nurse) {
+                            if(err) { console.log(err); }
+                            titleBar = 'Emergency - Serviced by ' + nurse.name;
+                            color = 'success';
+
+                            var req = {
+                                id: request._id,
+                                titleBar: titleBar,
+                                info: info,
+                                color: color
+                            };
+
+                            msgsEmitter.emit('reqAdd', req);
+                        });
+                        
+                    } else {
+                        titleBar = 'Emergency';
+                        color = 'danger';
+
+                        var req = {
+                            id: request._id,
+                            titleBar: titleBar,
+                            info: info,
+                            color: color
+                        };
+
+                        msgsEmitter.emit('reqAdd', req);
+                    }
+                } else {
+                    info = 'Request of ' + request.object + ' for ' + paitent.name;
+                    if(request.serviced) {
+                        Nurse.findOne({"_id": request.nurse}, function(err, nurse) {
+                            if(err) { console.log(err); }
+                            if(nurse) {
+                                var ns = nurse.name;
+                            } else {
+                                var ns = request.nurse;
+                            }
+                            titleBar = 'Request - Serviced by ' + ns;
+                            color = 'success';
+
+                            var req = {
+                                id: request._id,
+                                titleBar: titleBar,
+                                info: info,
+                                color: color
+                            };
+
+                            msgsEmitter.emit('reqAdd', req);
+                        });
+                    } else {
+                        titleBar = 'Request';
+                        color = 'primary';
+
+                        var req = {
+                            id: request._id,
+                            titleBar: titleBar,
+                            info: info,
+                            color: color
+                        };
+
+                        msgsEmitter.emit('reqAdd', req);
+                    }
+                }
+                
+
+            });
+
+        });
+
+
     }
 
 module.exports.updateReq = function(request) {
+    console.log('Entered updateReq fn');
         console.log('Updating socket request ' + request._id);
 
         findReqs();
         
-        if(request.object == 'Emergency') {
-            info = 'Emergency reported by ' + request.paitent;
-            if(request.serviced) {
-                titleBar = 'Emergency - Serviced';
-                color = 'success';
-            }
-        } else {
-            info = 'Request of ' + request.object;
-            if(request.serviced) {
-                titleBar = 'Request - Serviced';
-                color = 'success';
-            } else {
-                titleBar = 'Request';
-                color = 'primary';
-            }
-        }
+        Request.findOne(function(err, request) {
+            if(err) { console.log(err); }
 
-        var req = {
-            id: request._id,
-            titleBar: titleBar,
-            info: info,
-            color: color
-        };
+                var titleBar = '';
+                var info = '';
+                var color = '';
 
-        msgsEmitter.emit('reqUpdate', req);
+                request.serviced = true;
+
+                request.save(function(err){ if(err){console.log(err);}});
+
+
+                Paitent.findOne({"_id": request.paitent}, function(err, paitent) {
+                    if(err) { console.log(err); }
+
+                    if(request.object == 'Emergency') {
+                        info = 'Emergency reported for ' + paitent.name;
+                        if(request.serviced) {
+                            Nurse.findOne({"_id": request.nurse}, function(err, nurse) {
+                                if(err) { console.log(err); }
+                                titleBar = 'Emergency - Serviced by ' + nurse.name;
+                                color = 'success';
+
+                                var req = {
+                                    id: request._id,
+                                    titleBar: titleBar,
+                                    info: info,
+                                    color: color
+                                };
+
+                                msgsEmitter.emit('reqUpdate', req);
+                            });
+                            
+                        } else {
+                            titleBar = 'Emergency';
+                            color = 'danger';
+
+                            var req = {
+                                id: request._id,
+                                titleBar: titleBar,
+                                info: info,
+                                color: color
+                            };
+
+                            msgsEmitter.emit('reqUpdate', req);
+                        }
+                    } else {
+                        info = 'Request of ' + request.object + ' for ' + paitent.name;
+                        if(request.serviced) {
+                            Nurse.findOne({"_id": request.nurse}, function(err, nurse) {
+                                if(err) { console.log(err); }
+                                var ns = nurse.name || request.nurse;
+                                titleBar = 'Request - Serviced by ' + ns;
+                                color = 'success';
+
+                                var req = {
+                                    id: request._id,
+                                    titleBar: titleBar,
+                                    info: info,
+                                    color: color
+                                };
+
+                                msgsEmitter.emit('reqUpdate', req);
+                            });
+                        } else {
+                            titleBar = 'Request';
+                            color = 'primary';
+
+                            var req = {
+                                id: request._id,
+                                titleBar: titleBar,
+                                info: info,
+                                color: color
+                            };
+
+                            msgsEmitter.emit('reqUpdate', req);
+                        }
+                    }
+                    
+
+                });
+
+        });
 
     }
 
