@@ -597,6 +597,23 @@
                     "time": 59
                 }
             ]
+        },
+        {
+            "id": "ba0de051052849ed961d4f586c4a9d09",
+            "name": "Audio Event",
+            "type": "Audio Event",
+            "visible": true,
+            "locked": false,
+            "keyframes": [
+                {
+                    "value": {
+                        "AudioEvent": {
+                            "file": "FX_DoYouWantToPlay_01.mp3"
+                        }
+                    },
+                    "time": 0
+                }
+            ]
         }
     ]
 }

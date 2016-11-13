@@ -10,6 +10,7 @@
     "array-from": "^2.0.2",
     "behaviorify": "^1.0.0",
     "jibo": "^3.0.0",
+    "jokes": "0.0.2",
     "request": "^2.78.0"
   },
   "devDependencies": {},

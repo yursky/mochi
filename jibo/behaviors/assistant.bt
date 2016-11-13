@@ -22,25 +22,25 @@
         "parent": "6890f228-80e6-4da3-b4af-da43932a4138",
         "decorators": [],
         "children": [
+            "f6c78b5e-a669-479a-8810-220249ea3247",
+            "cc38757d-8087-4121-9248-6fd620385fec",
             "0bae6328-0d35-45a0-91e3-d2669042b60b",
             "0dc62bc9-1a5d-4521-97ea-56d20b22dda7"
         ]
     },
     "0bae6328-0d35-45a0-91e3-d2669042b60b": {
         "id": "0bae6328-0d35-45a0-91e3-d2669042b60b",
-        "class": "Parallel",
+        "class": "Sequence",
         "name": "",
-        "options": {
-            "succeedOnOne": false
-        },
+        "options": {},
         "asset-pack": "core",
         "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
+        "children": [
+            "2324b88d-9a94-4db4-80b0-21f3d8d886dc",
+            "393345d0-ac62-4db9-be90-6e57674ab643"
+        ],
         "decorators": [
             "20bdee4a-4f96-4605-baae-5447571ddb44"
-        ],
-        "children": [
-            "055553a9-3778-44a5-8a5e-6542bc1fcecc",
-            "438575b4-4976-4828-9c07-d4e3a048b459"
         ]
     },
     "20bdee4a-4f96-4605-baae-5447571ddb44": {
@@ -66,11 +66,17 @@
             "exec": [
                 "() => {",
                 "  console.log(notepad.user_name + \" needs \" + notepad.item);",
+                "  var request = require('request');",
+                "  ",
+                "  request.post({url:'http://jibo.pedelen.com/api/request', form: {id:notepad.user_id, object:notepad.item}}, function(err,httpResponse,body){ ",
+                "    console.log('With request id: ' + JSON.parse(body).requestID + 'needs ' + notepad.item);",
+                "    notepad.requestID = JSON.parse(body).requestID;",
+                "   })",
                 "}"
             ]
         },
         "asset-pack": "core",
-        "parent": "0bae6328-0d35-45a0-91e3-d2669042b60b"
+        "parent": "2324b88d-9a94-4db4-80b0-21f3d8d886dc"
     },
     "438575b4-4976-4828-9c07-d4e3a048b459": {
         "id": "438575b4-4976-4828-9c07-d4e3a048b459",
@@ -84,7 +90,7 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "0bae6328-0d35-45a0-91e3-d2669042b60b"
+        "parent": "2324b88d-9a94-4db4-80b0-21f3d8d886dc"
     },
     "0dc62bc9-1a5d-4521-97ea-56d20b22dda7": {
         "id": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
@@ -190,7 +196,7 @@
         "class": "TextToSpeech",
         "name": "",
         "options": {
-            "words": "Don't worry. Everyone has been notified and will be on their way.",
+            "words": "Don't worry. Everyone has been notified and someone will be on their way.",
             "onWord": [
                 "(word) => {",
                 "}"
@@ -204,14 +210,14 @@
         "class": "PlayAnimation",
         "name": "",
         "options": {
-            "animPath": "neutral.keys",
+            "animPath": "dance.keys",
             "config": [
                 "(animation) => {",
                 "}"
             ]
         },
         "asset-pack": "core",
-        "parent": "e83a99d6-efcc-4505-aecf-200f7f72f5e5"
+        "parent": "1bcd7b85-fb0d-4106-95fb-e72600fc0921"
     },
     "08108a88-6b70-4cfc-abe7-630a1dbd2735": {
         "id": "08108a88-6b70-4cfc-abe7-630a1dbd2735",
@@ -227,28 +233,6 @@
         "decorators": [],
         "options": {},
         "parent": 1
-    },
-    "325bb681-f517-46df-8b98-187b7d1f43ea": {
-        "id": "325bb681-f517-46df-8b98-187b7d1f43ea",
-        "class": "Subtree",
-        "name": "Watch target until \"Hey Jibo\"",
-        "asset-pack": "core",
-        "parent": "6890f228-80e6-4da3-b4af-da43932a4138",
-        "decorators": [
-            "cc05c0be-5273-4999-9193-cd0e1e942cb5"
-        ],
-        "options": {
-            "behaviorPath": "11-succeed-on.bt",
-            "getNotepad": [
-                "() => {",
-                "    return {};",
-                "}"
-            ],
-            "onResult": [
-                "(treeResult) => {",
-                "}"
-            ]
-        }
     },
     "c5cb2def-d2ef-4823-8d0a-a87675f8dd48": {
         "id": "c5cb2def-d2ef-4823-8d0a-a87675f8dd48",
@@ -302,7 +286,8 @@
         "asset-pack": "core",
         "parent": "1bf067dc-7413-402f-b49d-63f11e1c6a04",
         "children": [
-            "325bb681-f517-46df-8b98-187b7d1f43ea",
+            "a782704a-49b9-4913-84c8-bb7159737c53",
+            "398a3599-d771-4e8d-9030-7f02125ae8ed",
             "2ec7e859-a378-4e8c-8af3-5054b86ce26c"
         ]
     },
@@ -355,40 +340,6 @@
         },
         "asset-pack": "core",
         "parent": "7a4ef54c-a11c-4657-ab4a-cdfbddc31597"
-    },
-    "cc05c0be-5273-4999-9193-cd0e1e942cb5": {
-        "id": "cc05c0be-5273-4999-9193-cd0e1e942cb5",
-        "class": "SucceedOnListen",
-        "name": "",
-        "options": {
-            "getOptions": [
-                "() => {",
-                "    let options = {",
-                "        heyJibo: true,",
-                "        detectEnd: false,",
-                "        incremental: false,",
-                "        authenticateSpeaker: ''",
-                "    }",
-                "    jibo.animate.setLEDColor([0.0, 0.0, 1.0]);",
-                "    return options;",
-                "}"
-            ],
-            "rule": "parsed-string.rule",
-            "onResult": [
-                "(listener) => {",
-                "    listener.on('cloud', function(asrResult, speakerIds) {",
-                "      notepad.state =  asrResult.NLParse.what;",
-                "      console.log(asrResult.NLParse.fetch);",
-                "      if(notepad.state == 'fetch'){",
-                "        notepad.item = asrResult.NLParse['fetch.item.name'];",
-                "      }",
-                "      console.log(notepad.state);",
-                "      jibo.animate.setLEDColor([0.0, 0.0, 0.0]);",
-                "    });",
-                "}"
-            ]
-        },
-        "asset-pack": "core"
     },
     "35ca7198-0071-4d3b-8730-8c5d83bf7bb7": {
         "id": "35ca7198-0071-4d3b-8730-8c5d83bf7bb7",
@@ -443,7 +394,7 @@
         "asset-pack": "core",
         "parent": "08108a88-6b70-4cfc-abe7-630a1dbd2735",
         "children": [
-            "772bae94-0510-44f2-a551-2af6e8d22f4b"
+            "4473dc97-a2bc-45d9-9f6c-d40439ab1436"
         ]
     },
     "9892e214-b0ef-42d1-8f86-41799f86f71b": {
@@ -459,59 +410,6 @@
         },
         "asset-pack": "core",
         "parent": "7a4ef54c-a11c-4657-ab4a-cdfbddc31597"
-    },
-    "772bae94-0510-44f2-a551-2af6e8d22f4b": {
-        "id": "772bae94-0510-44f2-a551-2af6e8d22f4b",
-        "class": "Subtree",
-        "name": "",
-        "options": {
-            "behaviorPath": "19-lps.bt",
-            "getNotepad": [
-                "() => {",
-                "    return {};",
-                "}"
-            ],
-            "onResult": [
-                "(treeResult) => {",
-                "}"
-            ]
-        },
-        "asset-pack": "core",
-        "parent": "e8966af3-4c15-4c3c-961b-c802994c71f3",
-        "decorators": [
-            "1f42d5be-5f05-4f4d-90aa-e9b4a4f818e8"
-        ]
-    },
-    "1f42d5be-5f05-4f4d-90aa-e9b4a4f818e8": {
-        "id": "1f42d5be-5f05-4f4d-90aa-e9b4a4f818e8",
-        "class": "SucceedOnListen",
-        "name": "",
-        "options": {
-            "getOptions": [
-                "() => {",
-                "    let options = {",
-                "        heyJibo: false,",
-                "        detectEnd: false,",
-                "        incremental: false,",
-                "        authenticateSpeaker: ''",
-                "    }",
-                "    jibo.animate.setLEDColor([0.0, 0.0, 1.0]);",
-                "    return options;",
-                "}"
-            ],
-            "rule": "name.rule",
-            "onResult": [
-                "(listener) => {",
-                "    listener.on('cloud', function(asrResult, speakerIds) {",
-                "      console.log('New user added: ' + asrResult.NLParse['person.name']);",
-                "      notepad.user_name = asrResult.NLParse['person.name'];",
-                "      notepad.got_name = 'true';",
-                "      jibo.animate.setLEDColor([0.0, 0.0, 0.0]);",
-                "    });",
-                "}"
-            ]
-        },
-        "asset-pack": "core"
     },
     "9401da67-e447-4d7e-bcf8-fca1113aefb7": {
         "id": "9401da67-e447-4d7e-bcf8-fca1113aefb7",
@@ -542,25 +440,29 @@
                 "  poll();",
                 "  ",
                 "  function poll() {",
+                "    if ( handled == true) {",
+                "      return;",
+                "    }",
+                "    else {",
                 "    setTimeout(function() {",
-                "      console.log(\"Checking the request\");",
                 "      request.post({url:'http://jibo.pedelen.com/api/check', form: {id:notepad.requestID}}, function(err,httpResponse,body){ ",
-                "        if (notepad.message = JSON.parse(body).status === 'true') {",
+                "        if (JSON.parse(body).status == true) {",
                 "          handled = true;",
-                "          nodepad.state = null;",
-                "        } else {",
+                "          console.log(\"state is now null\");",
+                "          notepad.state = null;",
+                "          notepad.nurse = JSON.parse(body).nurse;",
+                "        } else if(!handled){",
                 "          poll();",
                 "        }",
                 "      });",
                 "    }, 1000);",
                 "  }",
-                "  ",
-                "  console.log(\"im out\");",
+                "  }",
                 "}"
             ]
         },
         "asset-pack": "core",
-        "parent": "fe1078c9-42e6-4f61-903e-441844ae9be5"
+        "parent": "e818067f-433c-469d-940f-0810776cf135"
     },
     "fe1078c9-42e6-4f61-903e-441844ae9be5": {
         "id": "fe1078c9-42e6-4f61-903e-441844ae9be5",
@@ -573,7 +475,7 @@
         "parent": "e83a99d6-efcc-4505-aecf-200f7f72f5e5",
         "children": [
             "73c87da0-209c-4741-8352-fcd428e9f5b6",
-            "fceb143e-0b29-4720-9ade-3efd81af875f"
+            "e818067f-433c-469d-940f-0810776cf135"
         ]
     },
     "e83a99d6-efcc-4505-aecf-200f7f72f5e5": {
@@ -585,7 +487,7 @@
         "parent": "0dc62bc9-1a5d-4521-97ea-56d20b22dda7",
         "children": [
             "fe1078c9-42e6-4f61-903e-441844ae9be5",
-            "e59d7520-bf94-4714-b1bf-430110766e9e"
+            "1bcd7b85-fb0d-4106-95fb-e72600fc0921"
         ]
     },
     "547e1bf6-9fe1-421c-a862-58e3f87c2ca5": {
@@ -602,5 +504,623 @@
             "f31e8f77-c8c7-41c8-af1c-92458565f12f",
             "f5e8889b-5c18-4e51-b215-7e6719660d31"
         ]
+    },
+    "f1567a66-99ad-4c98-bed3-a1d4e14dccb8": {
+        "id": "f1567a66-99ad-4c98-bed3-a1d4e14dccb8",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    callback('We are letting people know that you need ' + notepad.item);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "2324b88d-9a94-4db4-80b0-21f3d8d886dc"
+    },
+    "2324b88d-9a94-4db4-80b0-21f3d8d886dc": {
+        "id": "2324b88d-9a94-4db4-80b0-21f3d8d886dc",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "0bae6328-0d35-45a0-91e3-d2669042b60b",
+        "children": [
+            "438575b4-4976-4828-9c07-d4e3a048b459",
+            "055553a9-3778-44a5-8a5e-6542bc1fcecc",
+            "f1567a66-99ad-4c98-bed3-a1d4e14dccb8"
+        ]
+    },
+    "393345d0-ac62-4db9-be90-6e57674ab643": {
+        "id": "393345d0-ac62-4db9-be90-6e57674ab643",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "0bae6328-0d35-45a0-91e3-d2669042b60b",
+        "children": [
+            "44973f50-ad5d-4ed0-89ac-6a9b1dd7129a",
+            "77e4c135-6042-4138-bad8-f9c8530fffc8",
+            "740c789f-68e6-411b-b6ba-6c569f468872"
+        ]
+    },
+    "44973f50-ad5d-4ed0-89ac-6a9b1dd7129a": {
+        "id": "44973f50-ad5d-4ed0-89ac-6a9b1dd7129a",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  ",
+                "  var request = require('request');",
+                "  console.log('Polling for response on request...');",
+                "  ",
+                "  var handled = false;",
+                "  poll();",
+                "  ",
+                "  function poll() {",
+                "    if ( handled == true) {",
+                "      return;",
+                "    }",
+                "    else {",
+                "    setTimeout(function() {",
+                "      request.post({url:'http://jibo.pedelen.com/api/check', form: {id:notepad.requestID}}, function(err,httpResponse,body){ ",
+                "        if (JSON.parse(body).status == true) {",
+                "          notepad.nurse = JSON.parse(body).nurse;",
+                "          handled = true;",
+                "          notepad.state = null;",
+                "        } else if(!handled){",
+                "          poll();",
+                "        }",
+                "      });",
+                "    }, 1000);",
+                "  }",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "393345d0-ac62-4db9-be90-6e57674ab643",
+        "decorators": []
+    },
+    "899bc64a-3355-4f66-9e3c-ba83c4efce8c": {
+        "id": "899bc64a-3355-4f66-9e3c-ba83c4efce8c",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "excited.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "740c789f-68e6-411b-b6ba-6c569f468872"
+    },
+    "27bfff10-ba1f-4282-9235-1c8df8aa939b": {
+        "id": "27bfff10-ba1f-4282-9235-1c8df8aa939b",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    callback(notepad.nurse + ' is on the way, they will be here soon.');",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "1bcd7b85-fb0d-4106-95fb-e72600fc0921"
+    },
+    "1bcd7b85-fb0d-4106-95fb-e72600fc0921": {
+        "id": "1bcd7b85-fb0d-4106-95fb-e72600fc0921",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "e83a99d6-efcc-4505-aecf-200f7f72f5e5",
+        "children": [
+            "27bfff10-ba1f-4282-9235-1c8df8aa939b",
+            "e59d7520-bf94-4714-b1bf-430110766e9e"
+        ]
+    },
+    "cc38757d-8087-4121-9248-6fd620385fec": {
+        "id": "cc38757d-8087-4121-9248-6fd620385fec",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
+        "decorators": [
+            "6b2922e0-9b7e-4237-9c46-ec25f12dcce5"
+        ],
+        "children": [
+            "f3b5f7c9-0327-4e30-8554-985528329eae",
+            "2d6abf04-4ea3-4e08-b26c-0b1aedae2dce"
+        ]
+    },
+    "6b2922e0-9b7e-4237-9c46-ec25f12dcce5": {
+        "id": "6b2922e0-9b7e-4237-9c46-ec25f12dcce5",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  if(notepad.state == 'sad'){",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "bbf43224-184e-49ff-8365-1b9d6a84565e": {
+        "id": "bbf43224-184e-49ff-8365-1b9d6a84565e",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "love.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "2d6abf04-4ea3-4e08-b26c-0b1aedae2dce"
+    },
+    "f3b5f7c9-0327-4e30-8554-985528329eae": {
+        "id": "f3b5f7c9-0327-4e30-8554-985528329eae",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "cc38757d-8087-4121-9248-6fd620385fec",
+        "children": [
+            "8152a653-6523-49b8-b72b-c42891857c39",
+            "9a3736b5-738c-4da2-9b3d-a681b48100d7",
+            "c2aed319-c533-41d4-9998-a1985ec3f807"
+        ]
+    },
+    "8152a653-6523-49b8-b72b-c42891857c39": {
+        "id": "8152a653-6523-49b8-b72b-c42891857c39",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "loading.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "f3b5f7c9-0327-4e30-8554-985528329eae"
+    },
+    "9a3736b5-738c-4da2-9b3d-a681b48100d7": {
+        "id": "9a3736b5-738c-4da2-9b3d-a681b48100d7",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "Don't feel bad, let me try and cheer you up.",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "f3b5f7c9-0327-4e30-8554-985528329eae"
+    },
+    "c2aed319-c533-41d4-9998-a1985ec3f807": {
+        "id": "c2aed319-c533-41d4-9998-a1985ec3f807",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  notepad.state = null;",
+                "  ",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "f3b5f7c9-0327-4e30-8554-985528329eae"
+    },
+    "2d6abf04-4ea3-4e08-b26c-0b1aedae2dce": {
+        "id": "2d6abf04-4ea3-4e08-b26c-0b1aedae2dce",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "cc38757d-8087-4121-9248-6fd620385fec",
+        "children": [
+            "e4d00512-535b-42c1-a679-d6a6f1b6c940",
+            "bbf43224-184e-49ff-8365-1b9d6a84565e"
+        ]
+    },
+    "e4d00512-535b-42c1-a679-d6a6f1b6c940": {
+        "id": "e4d00512-535b-42c1-a679-d6a6f1b6c940",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "  let stories = [",
+                "    'There once was two bunny rabbits hoping through the forest. One was very sad, but the other was very happy because he had just found himself the biggest carrot in the forest. The sad rabbit hopped up next to the happy rabbit and stared. The happy rabbit extended out the carrot to him and the two became forever friends.', ",
+                "    'Once there was a dr. pepper flavored jelly bean that no one liked. His smell, his brown color, and his fizzy scent were absolutely repulsing. But one day he met his true love, a cherry flavored bean. She was the most beautiful red color and smelled very fruity. A human decided to eat them together and discovered the best flavor of all cherry Dr. Pepper.',",
+                "    'What do you call the robot that always takes the longest route around? R2 detour!'",
+                "  ];",
+                "  let index = Math.round(Math.random() * (stories.length - 1));",
+                "  callback(stories[index]);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "2d6abf04-4ea3-4e08-b26c-0b1aedae2dce"
+    },
+    "77e4c135-6042-4138-bad8-f9c8530fffc8": {
+        "id": "77e4c135-6042-4138-bad8-f9c8530fffc8",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "loading.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "393345d0-ac62-4db9-be90-6e57674ab643",
+        "decorators": [
+            "f185dfc3-23c8-46bb-89ac-dd5a6e2bcee4"
+        ]
+    },
+    "f185dfc3-23c8-46bb-89ac-dd5a6e2bcee4": {
+        "id": "f185dfc3-23c8-46bb-89ac-dd5a6e2bcee4",
+        "class": "WhileCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "  if(notepad.state !== null) {",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "740c789f-68e6-411b-b6ba-6c569f468872": {
+        "id": "740c789f-68e6-411b-b6ba-6c569f468872",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "393345d0-ac62-4db9-be90-6e57674ab643",
+        "children": [
+            "34236f89-4e47-4b60-ab02-da9eaef7030f",
+            "899bc64a-3355-4f66-9e3c-ba83c4efce8c"
+        ]
+    },
+    "34236f89-4e47-4b60-ab02-da9eaef7030f": {
+        "id": "34236f89-4e47-4b60-ab02-da9eaef7030f",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    callback(notepad.nurse + ' has responded to your need for ' + notepad.item);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "740c789f-68e6-411b-b6ba-6c569f468872"
+    },
+    "e818067f-433c-469d-940f-0810776cf135": {
+        "id": "e818067f-433c-469d-940f-0810776cf135",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "fe1078c9-42e6-4f61-903e-441844ae9be5",
+        "children": [
+            "fceb143e-0b29-4720-9ade-3efd81af875f",
+            "7199c9ad-dc48-4de2-84f0-74442c1149d2"
+        ]
+    },
+    "7199c9ad-dc48-4de2-84f0-74442c1149d2": {
+        "id": "7199c9ad-dc48-4de2-84f0-74442c1149d2",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "loading.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "e818067f-433c-469d-940f-0810776cf135",
+        "decorators": [
+            "b815f65d-dd3a-4766-8339-94bc236f39b4"
+        ]
+    },
+    "b815f65d-dd3a-4766-8339-94bc236f39b4": {
+        "id": "b815f65d-dd3a-4766-8339-94bc236f39b4",
+        "class": "WhileCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "  if(notepad.state !== null) {",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "f6c78b5e-a669-479a-8810-220249ea3247": {
+        "id": "f6c78b5e-a669-479a-8810-220249ea3247",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "2ec7e859-a378-4e8c-8af3-5054b86ce26c",
+        "decorators": [
+            "793c8dba-f803-4023-87d2-533c0927780f"
+        ],
+        "children": [
+            "80546d31-cc70-4ad4-8110-e3192a8df9be"
+        ]
+    },
+    "793c8dba-f803-4023-87d2-533c0927780f": {
+        "id": "793c8dba-f803-4023-87d2-533c0927780f",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  if(notepad.state == 'name'){",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "80546d31-cc70-4ad4-8110-e3192a8df9be": {
+        "id": "80546d31-cc70-4ad4-8110-e3192a8df9be",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "f6c78b5e-a669-479a-8810-220249ea3247",
+        "children": [
+            "a242c7a3-48ee-41e2-a984-e9c2528ec176",
+            "b10d18ad-098a-454c-8f3f-d3e6c8f1b6a3"
+        ]
+    },
+    "b10d18ad-098a-454c-8f3f-d3e6c8f1b6a3": {
+        "id": "b10d18ad-098a-454c-8f3f-d3e6c8f1b6a3",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "greeting-with-audio-event.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "80546d31-cc70-4ad4-8110-e3192a8df9be"
+    },
+    "a242c7a3-48ee-41e2-a984-e9c2528ec176": {
+        "id": "a242c7a3-48ee-41e2-a984-e9c2528ec176",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    callback('Hello, ' + notepad.greeting + \", it is wonderful to meet you\");",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "80546d31-cc70-4ad4-8110-e3192a8df9be"
+    },
+    "398a3599-d771-4e8d-9030-7f02125ae8ed": {
+        "id": "398a3599-d771-4e8d-9030-7f02125ae8ed",
+        "class": "LookAt",
+        "name": "",
+        "options": {
+            "getTarget": [
+                "() => {",
+                "  let jibo = require('jibo');",
+                "  let entity = jibo.lps.getClosestAudibleEntity();",
+                "",
+                "  // valid if we have data and confidence is at least 0.6",
+                "  let valid = (entity !== undefined && entity.confidence >= 0.6);",
+                "",
+                "  if (valid) {",
+                "  let pos = entity.position;",
+                "  pos = new jibo.animate.THREE.Vector3(pos.x, pos.y, pos.z);",
+                "  pos.normalize();",
+                "",
+                "  let newZ = pos.z;",
+                "  if (newZ > 0.5) {",
+                "  newZ = 0.5;",
+                "  }",
+                "  if (newZ < 0.2) {",
+                "  newZ = 0.2;",
+                "  }",
+                "",
+                "  notepad.position    = {x: pos.x, y:pos.y, z: newZ};",
+                "",
+                "  return notepad.position;",
+                "  }",
+                "  else {",
+                "  let confid = undefined;",
+                "  if (entity) {",
+                "  confid = entity.confidence;",
+                "  }",
+                "",
+                "  return notepad.position;",
+                "  }",
+                "}"
+            ],
+            "isContinuous": true,
+            "config": [
+                "(lookAt) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "6890f228-80e6-4da3-b4af-da43932a4138",
+        "decorators": [
+            "7ba74cd1-8115-4923-ba9d-b46c0ed694e7"
+        ]
+    },
+    "a782704a-49b9-4913-84c8-bb7159737c53": {
+        "id": "a782704a-49b9-4913-84c8-bb7159737c53",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  notepad.position = {x:.5, y:.1, z:.3};",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "6890f228-80e6-4da3-b4af-da43932a4138"
+    },
+    "7ba74cd1-8115-4923-ba9d-b46c0ed694e7": {
+        "id": "7ba74cd1-8115-4923-ba9d-b46c0ed694e7",
+        "class": "SucceedOnListen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    jibo.animate.setLEDColor([0.0, 0.0, 1.0]);",
+                "    return options;",
+                "}"
+            ],
+            "rule": "parsed-string.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      notepad.state =  asrResult.NLParse.what;",
+                "      console.log(asrResult);",
+                "      if(notepad.state == 'name') {",
+                "        notepad.greeting = asrResult.NLParse['greeting.name.name'];",
+                "      }",
+                "      if(notepad.state == 'fetch'){",
+                "        notepad.item = asrResult.NLParse['fetch.item.name'];",
+                "      }",
+                "      console.log(notepad.state);",
+                "      jibo.animate.setLEDColor([0.0, 0.0, 0.0]);",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "4473dc97-a2bc-45d9-9f6c-d40439ab1436": {
+        "id": "4473dc97-a2bc-45d9-9f6c-d40439ab1436",
+        "class": "Subtree",
+        "name": "",
+        "options": {
+            "behaviorPath": "idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "e8966af3-4c15-4c3c-961b-c802994c71f3",
+        "decorators": [
+            "6649ebb1-a48d-4c20-9c03-5f69e69c071d"
+        ]
+    },
+    "6649ebb1-a48d-4c20-9c03-5f69e69c071d": {
+        "id": "6649ebb1-a48d-4c20-9c03-5f69e69c071d",
+        "class": "SucceedOnListen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    jibo.animate.setLEDColor([0.0, 0.0, 1.0]);",
+                "    return options;",
+                "}"
+            ],
+            "rule": "name.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      console.log('New user added: ' + asrResult.NLParse['person.name']);",
+                "      notepad.user_name = asrResult.NLParse['person.name'];",
+                "      notepad.got_name = 'true';",
+                "      jibo.animate.setLEDColor([0.0, 0.0, 0.0]);",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
     }
 }
