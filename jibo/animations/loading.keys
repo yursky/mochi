@@ -1,11 +1,66 @@
 {
     "version": "0.6.0",
     "framerate": 30,
-    "duration": 90,
+    "duration": 92,
     "scale": 1,
     "layers": [
         {
-            "id": "d5c4fba7a4b4469a887a22de5372f2d6",
+            "id": "39f4d65c27704037b20549528b3c5b3e",
+            "name": "Eye Texture",
+            "type": "Eye Texture",
+            "visible": true,
+            "locked": false,
+            "keyframes": [
+                {
+                    "value": {
+                        "Texture": "animations/textures/white-eye.png",
+                        "Color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255
+                        }
+                    },
+                    "time": 0
+                }
+            ]
+        },
+        {
+            "id": "c3f1aac54ec04eb9b3345b330e6b1d2d",
+            "name": "Body",
+            "type": "Body",
+            "visible": true,
+            "locked": false,
+            "keyframes": [
+                {
+                    "value": {
+                        "Head": 0,
+                        "Torso": 0,
+                        "Pelvis": 0,
+                        "Tween": {
+                            "display": "sine in out",
+                            "label": "Sine Ease In Out",
+                            "value": "sineInOut"
+                        }
+                    },
+                    "time": 0
+                },
+                {
+                    "value": {
+                        "Head": 360.00000000000034,
+                        "Torso": 0,
+                        "Pelvis": -360,
+                        "Tween": {
+                            "display": "sine in out",
+                            "label": "Sine Ease In Out",
+                            "value": "sineInOut"
+                        }
+                    },
+                    "time": 90
+                }
+            ]
+        },
+        {
+            "id": "3caea6ada0464ab48ece56137bb09892",
             "name": "Eye",
             "type": "Eye",
             "visible": true,
@@ -19,8 +74,8 @@
                             "y": 1
                         },
                         "Translate": {
-                            "x": 3.0940827511197995,
-                            "y": 50.908262543774356
+                            "x": 0,
+                            "y": 0
                         },
                         "Tween": {
                             "display": "sine in out",
@@ -70,12 +125,12 @@
                     "value": {
                         "Rotate": 0,
                         "Scale": {
-                            "x": 1,
-                            "y": 1
+                            "x": 0.2883037388538349,
+                            "y": 0.2860013572267994
                         },
                         "Translate": {
-                            "x": 3.6662466735731414,
-                            "y": -55.014560073865766
+                            "x": 0,
+                            "y": 0
                         },
                         "Tween": {
                             "display": "sine in out",
@@ -119,62 +174,7 @@
                             "y": 300
                         }
                     },
-                    "time": 10
-                },
-                {
-                    "value": {
-                        "Rotate": 0,
-                        "Scale": {
-                            "x": 1,
-                            "y": 0.8440408193765112
-                        },
-                        "Translate": {
-                            "x": 1.9497549062132293,
-                            "y": 97.58766798316208
-                        },
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        },
-                        "Vertex 1": {
-                            "x": -300,
-                            "y": -300
-                        },
-                        "Vertex 2": {
-                            "x": 0,
-                            "y": -300
-                        },
-                        "Vertex 3": {
-                            "x": 300,
-                            "y": -300
-                        },
-                        "Vertex 4": {
-                            "x": -300,
-                            "y": 0
-                        },
-                        "Vertex 5": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "Vertex 6": {
-                            "x": 300,
-                            "y": 0
-                        },
-                        "Vertex 7": {
-                            "x": -300,
-                            "y": 300
-                        },
-                        "Vertex 8": {
-                            "x": 0,
-                            "y": 300
-                        },
-                        "Vertex 9": {
-                            "x": 300,
-                            "y": 300
-                        }
-                    },
-                    "time": 20
+                    "time": 15
                 },
                 {
                     "value": {
@@ -184,8 +184,8 @@
                             "y": 1
                         },
                         "Translate": {
-                            "x": 3.6662466735731414,
-                            "y": -55.014560073865766
+                            "x": 0,
+                            "y": 0
                         },
                         "Tween": {
                             "display": "sine in out",
@@ -235,12 +235,12 @@
                     "value": {
                         "Rotate": 0,
                         "Scale": {
-                            "x": 1,
-                            "y": 0.8440408193765112
+                            "x": 0.2883037388538349,
+                            "y": 0.2860013572267994
                         },
                         "Translate": {
-                            "x": 1.9497549062132293,
-                            "y": 97.58766798316208
+                            "x": 0,
+                            "y": 0
                         },
                         "Tween": {
                             "display": "sine in out",
@@ -284,7 +284,7 @@
                             "y": 300
                         }
                     },
-                    "time": 40
+                    "time": 45
                 },
                 {
                     "value": {
@@ -294,63 +294,8 @@
                             "y": 1
                         },
                         "Translate": {
-                            "x": 3.6662466735731414,
-                            "y": -55.014560073865766
-                        },
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        },
-                        "Vertex 1": {
-                            "x": -300,
-                            "y": -300
-                        },
-                        "Vertex 2": {
-                            "x": 0,
-                            "y": -300
-                        },
-                        "Vertex 3": {
-                            "x": 300,
-                            "y": -300
-                        },
-                        "Vertex 4": {
-                            "x": -300,
-                            "y": 0
-                        },
-                        "Vertex 5": {
                             "x": 0,
                             "y": 0
-                        },
-                        "Vertex 6": {
-                            "x": 300,
-                            "y": 0
-                        },
-                        "Vertex 7": {
-                            "x": -300,
-                            "y": 300
-                        },
-                        "Vertex 8": {
-                            "x": 0,
-                            "y": 300
-                        },
-                        "Vertex 9": {
-                            "x": 300,
-                            "y": 300
-                        }
-                    },
-                    "time": 50
-                },
-                {
-                    "value": {
-                        "Rotate": 0,
-                        "Scale": {
-                            "x": 1,
-                            "y": 0.8440408193765112
-                        },
-                        "Translate": {
-                            "x": 1.9497549062132293,
-                            "y": 97.58766798316208
                         },
                         "Tween": {
                             "display": "sine in out",
@@ -400,12 +345,12 @@
                     "value": {
                         "Rotate": 0,
                         "Scale": {
-                            "x": 1,
-                            "y": 1
+                            "x": 0.2883037388538349,
+                            "y": 0.2860013572267994
                         },
                         "Translate": {
-                            "x": 3.6662466735731414,
-                            "y": -55.014560073865766
+                            "x": 0,
+                            "y": 0
                         },
                         "Tween": {
                             "display": "sine in out",
@@ -449,18 +394,18 @@
                             "y": 300
                         }
                     },
-                    "time": 70
+                    "time": 75
                 },
                 {
                     "value": {
                         "Rotate": 0,
                         "Scale": {
                             "x": 1,
-                            "y": 0.8440408193765112
+                            "y": 1
                         },
                         "Translate": {
-                            "x": 1.9497549062132293,
-                            "y": 97.58766798316208
+                            "x": 0,
+                            "y": 0
                         },
                         "Tween": {
                             "display": "sine in out",
@@ -504,125 +449,7 @@
                             "y": 300
                         }
                     },
-                    "time": 80
-                }
-            ]
-        },
-        {
-            "id": "609ab88aec05463a92f312e6583562a1",
-            "name": "Eye Texture",
-            "type": "Eye Texture",
-            "visible": true,
-            "locked": false,
-            "keyframes": [
-                {
-                    "value": {
-                        "Texture": "animations/textures/white-eye.png",
-                        "Color": {
-                            "r": 25,
-                            "g": 144,
-                            "b": 255
-                        }
-                    },
-                    "time": 10
-                },
-                {
-                    "value": {
-                        "Texture": "animations/textures/white-eye.png",
-                        "Color": {
-                            "r": 25,
-                            "g": 144,
-                            "b": 255
-                        }
-                    },
-                    "time": 39
-                }
-            ]
-        },
-        {
-            "id": "1a270e5e167a47919ab3478d39334679",
-            "name": "Body",
-            "type": "Body",
-            "visible": true,
-            "locked": false,
-            "keyframes": [
-                {
-                    "value": {
-                        "Head": -23.499999999999996,
-                        "Torso": 24.999999999999996,
-                        "Pelvis": 0,
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        }
-                    },
-                    "time": 5
-                },
-                {
-                    "value": {
-                        "Head": 14.500000000000002,
-                        "Torso": -9.500000000000002,
-                        "Pelvis": 0,
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        }
-                    },
-                    "time": 20
-                },
-                {
-                    "value": {
-                        "Head": -23.499999999999996,
-                        "Torso": 24.999999999999996,
-                        "Pelvis": 0,
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        }
-                    },
-                    "time": 35
-                },
-                {
-                    "value": {
-                        "Head": 14.500000000000002,
-                        "Torso": -9.500000000000002,
-                        "Pelvis": 0,
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        }
-                    },
-                    "time": 50
-                },
-                {
-                    "value": {
-                        "Head": -23.499999999999996,
-                        "Torso": 24.999999999999996,
-                        "Pelvis": 0,
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        }
-                    },
-                    "time": 65
-                },
-                {
-                    "value": {
-                        "Head": 14.500000000000002,
-                        "Torso": -9.500000000000002,
-                        "Pelvis": 0,
-                        "Tween": {
-                            "display": "sine in out",
-                            "label": "Sine Ease In Out",
-                            "value": "sineInOut"
-                        }
-                    },
-                    "time": 80
+                    "time": 90
                 }
             ]
         }
