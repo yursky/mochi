@@ -63,7 +63,7 @@ module.exports.request = function(request) {
         if(err) {
             console.log(err);
         } else {
-            Nurse.findRandom().limit(4).exec(function(err, nurses) {
+            Nurse.findRandom().limit(5).exec(function(err, nurses) {
 
                 if(err) {
                     console.log(err);
@@ -134,7 +134,7 @@ module.exports.message = function(nurse, body, cb) {
 
     if(!nurse.curReq){
         cb('You have no current requests');
-    } else if(body == 'ok' || body == 'Ok') {
+    } else if(body == 'ok' || body == 'Ok' || body == 'OK') {
         Request.findOne({"_id": nurse.curReq}, function(err, request) {
             if(err) {
                 console.log(err);

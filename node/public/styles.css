@@ -17,3 +17,7 @@ h2, h3 {
 .panel {
     margin: 10px;
 }
+
+#number {
+    text-align: center;
+}
