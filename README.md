@@ -6,11 +6,11 @@ Mochi are jibo robots that are there for the patients in nursing homes and other
 
 ## Installation
 
-Run ``` npm install ``` in both the ``` jibo ``` and ``` node ```
+Run ``` npm install ``` in both the /jibo and /node
 
 ## Usage
 
-Run npm start in the node directory to start the server.
+Run ```npm start``` in the node directory to start the server.
 
 ## Contributing
 
