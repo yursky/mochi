@@ -6,8 +6,8 @@
       $family {what = 'family'}
   );
 
-  help = ($* i need help) | ($* i have an emergency);
-  fetch = ($* i need ) | ($* get (me) | (some)) $item;
+  help = ($* i need help) | ($* i have an emergency) | (help);
+  fetch = ($* i need ) | ($* get (me) | (some))| (can i have ) $item ;
   sad = (sad | upset | down | blue);
   greeting = ($* my name is) | ($* i am) $name;
   family = (family);

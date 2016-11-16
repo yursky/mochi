@@ -334,7 +334,7 @@
         "class": "TextToSpeech",
         "name": "",
         "options": {
-            "words": "Hello, my name is Jibo! What is yours?",
+            "words": "Hello, my name is Mochi! What is yours?",
             "onWord": [
                 "(word) => {",
                 "}"
@@ -762,8 +762,10 @@
             "getWords": [
                 "(callback) => {",
                 "  let stories = [",
-                "    'There once was two bunny rabbits hoping through the forest. One was very sad, but the other was very happy because he had just found himself the biggest carrot in the forest. The sad rabbit hopped up next to the happy rabbit and stared. The happy rabbit extended out the carrot to him and the two became forever friends.', ",
-                "    'Once there was a dr. pepper flavored jelly bean that no one liked. His smell, his brown color, and his fizzy scent were absolutely repulsing. But one day he met his true love, a cherry flavored bean. She was the most beautiful red color and smelled very fruity. A human decided to eat them together and discovered the best flavor of all cherry Dr. Pepper.',",
+                "    'What is a robot’s favourite type of music? Heavy metal!', ",
+                "    'Why was the robot angry? Because someone kept pushing his buttons!', ",
+                "    'What is a robots favourite snack? Nuts and bolts',",
+                "    'Who did the robot share his secrets with? His most-rusted friend!',",
                 "    'What do you call the robot that always takes the longest route around? R2 deetour!'",
                 "  ];",
                 "  let index = Math.round(Math.random() * (stories.length - 1));",
@@ -1195,7 +1197,7 @@
                 "(callback) => {",
                 "  console.log(\"checked sent\");",
                 "  if (notepad.sent == 'true') {",
-                "    callback('You have no new messages, I have e-mailed your daughter to ask how she is. Here is a recent photo of your family.');",
+                "    callback('You have no new messages, I have e-mailed your grandson to ask how they are. Here is a recent photo of your family.');",
                 "  }",
                 "  else {",
                 "    callback('You have one new message from ' + notepad.sender + ', it says: \\n' + notepad.email + '\\n Here is a recent photo of your family.');",
